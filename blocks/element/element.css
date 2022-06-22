@@ -1,0 +1,9 @@
+.element{
+    background: #FFFFFF;
+    border-radius: 10px;
+    width: 282px;
+    height: 362px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

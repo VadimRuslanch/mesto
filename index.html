@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mestro</title>
+    <link rel="stylesheet" href="../mesto/pages/index.css">
+  </head>
+  <body class="page">
+    <header class="header">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    </header>
+    <main class="main">
+        <section class="profile">
+                <div class="profile__page-autor">
+                    <img class="profile__avatar" src="./images/Jacques-yves-Cousteau.jpg">
+                    <div class="profile__info">
+                        <a class="profile__info-name">Жак-Ив Кусто
+                                <button class="profile__edit-button" type="submit"></button></a>
+                        <p class="profile__info-about-me">Исследователь океана</p>
+                    </div>
+                </div>
+                <figure class="profile__add-button"><img class="profile__add-button-plus" src="./images/Add-Button.svg "></figure>
+        </section>
+        <section class="elements">
+                <article class="element">
+                    <img class="element__img" src="./images/karachaev.png">
+                    <div class="element__group-text-like">
+                        <h2 class="element__text">Карачаевск</h2>
+                        <img class="element__like" src="./images/Like.svg">
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__img" src="./images/elbrus1.png">
+                    <div class="element__group-text-like">
+                        <h2 class="element__text">Гора Эльбрус</h2>
+                        <img class="element__like" src="./images/Like.svg">
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__img" src="./images/dombay.png">
+                    <div class="element__group-text-like">
+                        <h2 class="element__text">Домбай</h2>
+                        <img class="element__like" src="./images/Like.svg">
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__img">
+                    <div class="element__group-text-like">
+                        <h2 class="element__text"></h2>
+                        <img class="element__like" src="./images/Like.svg">
+                    </div>
+                </article>
+                <article class="element">
+                    <img class="element__img">
+                    <div class="element__group-text-like">
+                        <h2 class="element__text"></h2>
+                        <img class="element__like" src="./images/Like.svg">
+                    </div>
+                </article><article class="element">
+                    <img class="element__img">
+                    <div class="element__group-text-like">
+                        <h2 class="element__text"></h2>
+                        <img class="element__like" src="./images/Like.svg">
+                    </div>
+                </article>
+        </section>
+    </main>
+    <footer class="footer" >
+        <p>&#169; 2020 Lebedev Vadim</p>
+    </footer>
+    <!-- добавить анимация опресити кнопкам -->
+    <section class="popup popup_opened">
+        <div class="popup__overlay"></div>
+        <div class="popup__container">
+            <form class="form">
+                <h1 class="input__header">Редактировать профиль</h1>
+                <input type="text" placeholder="Ваше имя" class="input__name">
+                <input type="text" placeholder="Кто вы?" class="input__about-me">
+                <button type="submit" class="button__save">Сохранить</button>
+                <input type="button" class="button__close" name="close">
+            </form>
+        </div>     
+    </section>
+
+
+    <script src="./pages/script.js"></script>
+  </body>

@@ -2,8 +2,6 @@
     margin: 0px;
     padding: 0px;
     display: none;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -13,6 +11,8 @@
 
 .popup_opened{
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .popup__overlay {
@@ -64,7 +64,7 @@
     }
 }
 
-.input__header{
+.form__input-header{
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
@@ -76,14 +76,14 @@
 }
 
 @media screen and (max-width:768px) {
-    .input__header{
+    .form__input-header{
         font-size: calc((100vw - 320px)/(1280 - 320) * (24 - 18) + 18px);
         line-height: calc((100vw - 320px)/(1280 - 320) * (29 - 22) + 22px);
 
     }
 }
 
-.input__name{
+.form__input-name{
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -97,13 +97,13 @@
 }
 
 @media (min-width:320px) and (max-width:1280px){
-    .input__name{
+    .form__input-name{
         width: calc((100vw - 320px)/(1280 - 320) * (358 - 238) + 238px);
         margin-top: calc((100vw - 320px)/(1280 - 320) * (54 - 75) + 75px);
     }
 }
 
-.input__about-me{
+.form__input-about-me{
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -117,14 +117,14 @@
 }
 
 @media (min-width:320px) and (max-width:1280px){
-    .input__about-me{
+    .form__input-about-me{
         width: calc((100vw - 320px)/(1280 - 320) * (358 - 238) + 238px);
         margin: 30px 0px 45px 0px;
 
     }
 }
 
-.button__save{
+.form__button-save{
     border: none;
     padding: 0px;
     margin: 0px;
@@ -142,13 +142,13 @@
 }
 
 @media (min-width:320px) and (max-width:1280px){
-    .button__save{
+    .form__button-save{
         width: calc((100vw - 320px)/(1280 - 320) * (358 - 238) + 238px);
         height: calc((100vw - 320px)/(1280 - 320) * (50 - 46) + 46px);
     }
 }
 
-.button__close{
+.form__button-close{
     background-image: url(./images/Close-icon.svg);
     padding: 0px;
     margin: 0px;
@@ -163,7 +163,7 @@
 }
 
 @media screen and (max-width:768px){
-    .button__close{
+    .form__button-close{
         right: 0px;
     }
 }

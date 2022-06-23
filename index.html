@@ -65,23 +65,23 @@
                     </div>
                 </article>
         </section>
+        <section class="popup popup_opened">
+            <div class="popup__overlay"></div>
+            <div class="popup__container">
+                <form class="form">
+                    <h1 class="form__input-header">Редактировать профиль</h1>
+                    <input class="form__input-name" type="text" placeholder="Ваше имя">
+                    <input class="form__input-about-me" type="text" placeholder="Кто вы?">
+                    <button class="form__button-save" type="submit">Сохранить</button>
+                    <button class="form__button-close" type="button" name="close"></button>
+                </form>
+            </div>     
+        </section>
     </main>
     <footer class="footer" >
         <p>&#169; 2020 Lebedev Vadim</p>
     </footer>
     <!-- добавить анимация опресити кнопкам -->
-    <section class="popup popup_opened">
-        <div class="popup__overlay"></div>
-        <div class="popup__container">
-            <form class="form">
-                <h1 class="input__header">Редактировать профиль</h1>
-                <input type="text" placeholder="Ваше имя" class="input__name">
-                <input type="text" placeholder="Кто вы?" class="input__about-me">
-                <button type="submit" class="button__save">Сохранить</button>
-                <input type="button" class="button__close" name="close">
-            </form>
-        </div>     
-    </section>
 
 
     <script src="./pages/script.js"></script>

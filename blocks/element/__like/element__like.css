@@ -3,4 +3,18 @@
     height: 19px;
     margin: 0%;
     padding: 0%;
+    border: none;
+    background-image: url(../../../images/Like.svg);
+    background-color: transparent;
+}
+
+.element__like:hover{
+    opacity: 0.6;
+    transition: opacity 0.1s linear;
+    cursor: pointer;
+}
+
+.element__like:focus{
+    background-image: url(../../../images/like_black.svg);
+    cursor: pointer;
 }

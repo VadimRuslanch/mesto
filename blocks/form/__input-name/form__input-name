@@ -1,0 +1,19 @@
+.form__input-name{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    border: none;
+    margin-top: 54px;
+    padding: 0px 0px 13px 0px;
+    width: 358px;
+    border-bottom: 1px solid #000000;
+}
+
+@media (min-width:320px) and (max-width:1280px){
+    .form__input-name{
+        width: calc((100vw - 320px)/(1280 - 320) * (358 - 238) + 238px);
+        margin-top: calc((100vw - 320px)/(1280 - 320) * (54 - 75) + 75px);
+    }
+}

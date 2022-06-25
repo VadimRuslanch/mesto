@@ -1,0 +1,29 @@
+.form__button-save{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    width: 358px;
+    height: 50px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #000000;
+    border-radius: 2px;
+}
+
+.form__button-save:hover{
+    opacity: 0.8;
+    transition: opacity 0.2s linear;
+    cursor: pointer;
+}
+
+
+@media (min-width:320px) and (max-width:1280px){
+    .form__button-save{
+        width: calc((100vw - 320px)/(1280 - 320) * (358 - 238) + 238px);
+        height: calc((100vw - 320px)/(1280 - 320) * (50 - 46) + 46px);
+    }
+}

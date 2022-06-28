@@ -1,0 +1,4 @@
+.element__like:focus{
+    background-image: url(../../../../images/like_black.svg);
+    cursor: pointer;
+}

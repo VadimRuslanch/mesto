@@ -11,69 +11,70 @@
         <img class="header__logo" src="./images/logo.svg" alt="Логотип">
     </header>
     <main class="main">
-        <div class="profile">
+        <section class="profile">
             <div class="profile__page-autor">
                 <img class="profile__avatar" src="./images/Jacques-yves-Cousteau.jpg" alt="Аватар">
                 <div class="profile__info">
-                    <a class="profile__info-name">Жак-Ив Кусто</a>
-                    <button class="profile__edit-button" type="submit"></button>
+                    <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+                    <button class="profile__edit-button" type="button"></button>
                     <p class="profile__info-about-me">Исследователь океана</p>
                 </div>
             </div>
-            <figure class="profile__add-button">
+            <button class="profile__add-button" type="button">
                 <img class="profile__add-button-plus" src="./images/Add-Button.svg " alt="Добавить">
-            </figure>
-        </div>
-        <div class="elements">
+            </button>
+        </section>
+        <section class="elements">
             <article class="element">
                 <img class="element__img" src="./images/karachaev.png" alt="Картинка автора">
                 <div class="element__group-text-like">
                     <h2 class="element__text">Карачаевск</h2>
-                    <button class="element__like"></button>
+                    <button class="element__like element__like_black" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img class="element__img" src="./images/elbrus1.png" alt="Картинка автора">
                 <div class="element__group-text-like">
                     <h2 class="element__text">Гора Эльбрус</h2>
-                    <button class="element__like"></button>
+                    <button class="element__like element__like_black" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img class="element__img" src="./images/dombay.png" alt="Картинка автора">
                 <div class="element__group-text-like">
                     <h2 class="element__text">Домбай</h2>
-                    <button class="element__like"></button>
+                    <button class="element__like element__like_black" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img class="element__img" src="./images/Cafe.avif" alt="Картинка автора">
                 <div class="element__group-text-like">
                     <h2 class="element__text">Уголок кофени</h2>
-                    <button class="element__like"></button>
+                    <button class="element__like element__like_black" type="button"></button>
                 </div>
             </article>
             <article class="element">
                 <img class="element__img" src="./images/girl.avif" alt="Картинка автора">
                 <div class="element__group-text-like">
                     <h2 class="element__text">Девушка</h2>
-                    <button class="element__like"></button>
+                    <button class="element__like element__like_black" type="button"></button>
                 </div>
-            </article><article class="element">
+            </article>
+            <article class="element">
                 <img class="element__img" src="./images/Bird.avif" alt="Картинка автора">
                 <div class="element__group-text-like">
                     <h2 class="element__text">Птицы</h2>
-                    <button class="element__like"></button>
-            </div>
+                    <button class="element__like element__like_black" type="button"></button>
+                </div>
             </article>
-        </div>
+        </section>
         <section class="popup">
             <div class="popup__overlay"></div>
             <div class="popup__container">
-                <form class="form">
-                    <h1 class="form__input-header">Редактировать профиль</h1>
-                    <input class="form__input-name" type="text" value='' placeholder="Ваше имя">
-                    <input class="form__input-about-me" type="text" value='' placeholder="Кто вы?">
+                <form class="form" name="formInput">
+                    <h2 class="form__input-header">Редактировать профиль</h2>
+                    <input class="form__input form__input_name" type="text" value='' placeholder="Ваше имя">
+                    <input class="form__input form__input_about-me" type="text" value='' placeholder="Кто вы?">
                     <input class="form__button-save" type="submit" value="Сохранить">
                     <button class="form__button-close" type="button"></button>
                 </form>
@@ -81,11 +82,8 @@
         </section>
     </main>
     <footer class="footer" >
-        <p>&#169; 2020 Lebedev Vadim</p>
+        <p class="footer__text">&#169;2020 Lebedev Vadim</p>
     </footer>
-    <!-- добавить анимация опресити кнопкам -->
-
-
     <script src="./pages/script.js"></script>
   </body>
   </html>

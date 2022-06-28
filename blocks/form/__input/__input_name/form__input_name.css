@@ -1,0 +1,9 @@
+.form__input_name{
+    margin-top: 54px;
+}
+
+@media (min-width:320px) and (max-width:1280px){
+    .form__input_name{
+        margin-top: calc((100vw - 320px)/(1280 - 320) * (54 - 75) + 75px);
+    }
+}

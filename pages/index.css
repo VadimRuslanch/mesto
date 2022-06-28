@@ -1,5 +1,5 @@
 @import url(../style/normalize.css);
-@import url(../style_popup.css);
+@import url(../fonts/inter.css);
 
 @import url(../blocks/page/page.css);
 
@@ -24,16 +24,20 @@
 @import url(../blocks/element/__group-text-like/element__group-text-like.css);
 @import url(../blocks/element/__text/element__text.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__like/_black/element__like_black.css);
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/popup_opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__overlay/popup__overlay.css);
+
 @import url(../blocks/form/form.css);
-@import url(../blocks/form/__input-name/form__input-name.css);
 @import url(../blocks/form/__input-header/form__input-header.css);
-@import url(../blocks/form/__input-about-me/form__input-about-me.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__input/__input_name/form__input_name.css);
+@import url(../blocks/form/__input/__input_about-me/form__input_about-me.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
 @import url(../blocks/form/__button-close/form__button-close.css);
 
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__text/footer__text.css);

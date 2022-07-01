@@ -9,8 +9,8 @@ let closeButton = main.querySelector('.form__button-close');
 let profileName = main.querySelector('.profile__info-name');
 let profileAboutMe = main.querySelector('.profile__info-about-me');
 
-let nameInput = popup.querySelector('.form__input_name');
-let aboutInput = popup.querySelector('.form__input_about-me');
+let nameInput = popup.querySelector('.form__input_indent_name');
+let aboutInput = popup.querySelector('.form__input_indent_about-me');
 let saveButton = popup.querySelector('.form__button-save')
 
 function openPopup(){

@@ -35,8 +35,6 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input-header/form__input-header.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/_indent/form__input_indent_name.css);
-@import url(../blocks/form/__input/_indent/form__input_indent_about-me.css);
 @import url(../blocks/form/__button-save/form__button-save.css);
 @import url(../blocks/form/__button-close/form__button-close.css);
 

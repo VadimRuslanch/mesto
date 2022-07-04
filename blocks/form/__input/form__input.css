@@ -6,12 +6,21 @@
     color: #000000;
     border: none;
     padding: 0px 0px 13px 0px;
+    margin-top: 30px;
     width: 358px;
     border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+}
+
+.form__input:first-of-type{
+    margin-top: 54px;
 }
 
 @media (min-width:320px) and (max-width:1280px){
     .form__input{
         width: calc((100vw - 320px)/(1280 - 320) * (358 - 238) + 238px);
     }
+    .form__input:first-of-type{
+        margin-top: calc((100vw - 320px)/(1280 - 320) * (54 - 75) + 75px);
+    }
+    
 }

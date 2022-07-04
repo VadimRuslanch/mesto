@@ -26,7 +26,21 @@
                 <img class="profile__add-button-plus" src="./images/Add-Button.svg " alt="Добавить">
             </button>
         </section>
-        <section class="elements">
+        <section class="elements"></section>
+        <template id="elementTemplate">
+            
+            <article class="element">
+                <img class="element__img" src="" alt="Картинка Автора">
+                <div class="element__group-text-like">
+                    <h2 class="element__text">
+                        
+                    </h2>
+                    <button class="element__like element__like_black" type="button"></button>
+                </div>
+            </article>
+        </template>
+
+        <!-- <section class="elements">
             <article class="element">
                 <img class="element__img" src="./images/karachaev.png" alt="Храм на фоне лесного расщелье">
                 <div class="element__group-text-like">
@@ -69,22 +83,37 @@
                     <button class="element__like element__like_black" type="button"></button>
                 </div>
             </article>
-        </section>
+        </section> -->
+        
         <section class="popup">
             <div class="popup__overlay"></div>
             <div class="popup__container">
                 <form class="form" name="formInput">
                     <h2 class="form__input-header">Редактировать профиль</h2>
-                    <input class="form__input form__input_indent_name" type="text" value='' placeholder="Ваше имя">
-                    <input class="form__input form__input_indent_about-me" type="text" value='' placeholder="Кто вы?">
+                    <input class="form__input" id="form__input-name" type="text" value='' placeholder="Ваше имя">
+                    <input class="form__input" id="form__input-about-me" type="text" value='' placeholder="Кто вы?">
+                    <input class="form__button-save" type="submit" value="Сохранить">
+                    <button class="form__button-close" type="button"></button>
+                </form>
+            </div>     
+        </section>
+
+        <section class="popup">
+            <div class="popup__overlay"></div>
+            <div class="popup__container">
+                <form class="form" name="formInput">
+                    <h2 class="form__input-header">Новое место</h2>
+                    <input class="form__input" id="form__input-title" type="text" value='' placeholder="Название">
+                    <input class="form__input" id="form__input-link" type="text" value='' placeholder="Ссылка на картинку">
                     <input class="form__button-save" type="submit" value="Сохранить">
                     <button class="form__button-close" type="button"></button>
                 </form>
             </div>     
         </section>
     </main>
+
     <footer class="footer" >
-        <p class="footer__text">&#169;2020 Lebedev Vadim</p>
+        <p class="footer__text">&#169;Lebedev Vadim.2020</p>
     </footer>
     <script src="./pages/script.js"></script>
   </body>

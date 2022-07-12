@@ -22,5 +22,4 @@
     .form__input:first-of-type{
         margin-top: calc((100vw - 320px)/(1280 - 320) * (54 - 75) + 75px);
     }
-    
 }

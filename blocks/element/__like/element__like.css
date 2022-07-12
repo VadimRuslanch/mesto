@@ -1,15 +1,43 @@
 .element__like{
     width: 22px;
     height: 19px;
+    background-size: 100%;
     margin: 0%;
     padding: 0%;
     border: none;
-    background-image: url(../../../images/Like.svg);
+    background: url(../../../images/Like.svg) center no-repeat;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .element__like:hover{
     opacity: 0.6;
     transition: opacity 0.1s linear;
-    cursor: pointer;
 }
+
+/* .element__like{
+    position: relative;
+    width: 19px; 
+    height: 22px;
+}
+
+.element__like:before, 
+.element__like:after {
+    position: absolute; 
+    content: "";
+    left: 14px; 
+    top: 0;
+    width: 12px; 
+    height: 21px;
+    background: white;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg); 
+    transform-origin: 0 100%;
+    border: 1px solid black;
+}
+
+.element__like:after {
+    left: 0;
+    transform: rotate(45deg); 
+    transform-origin: 100% 100%;
+    } */

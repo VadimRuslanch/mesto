@@ -1,145 +1,154 @@
 const main = document.querySelector(".main");
+const elementsList = main.querySelector('.elements');
+const elementTemplate = document.querySelector('#elementTemplate').content.querySelector('.element');
 
-const formProfile = main.querySelector('#form__profile')
-const formImages = main.querySelector('#form__images')
-const elementsList = document.querySelector('.elements');
-
-const elementTemplate = document.querySelector('#elementTemplate').content;
-const elementList = elementTemplate.querySelector('.element');
-
+const popupOpenImage = main.querySelector('#popup_open-image');
 const popupProfile = main.querySelector('#popup_profile');
-const popupImages = main.querySelector('#popup_images');
+const popupAddImage = main.querySelector('#popup_add-image');
 const popupOpen = main.querySelector('.popup_opened');
-const popupImage = main.querySelector('#popup_image');
 
-const closeButtonProfile = main.querySelector('#button-close_profile');
-const closeButtonImages = main.querySelector('#button-close_images');
-const closeButtonPopupImage = main.querySelector('#button-close_popup-image');
-const saveButtonProfile = main.querySelector('#button-save_profile');
-const saveButtonImages = main.querySelector('#button-save_images');
-const addButton = main.querySelector('.profile__button-add');
-const editButton = main.querySelector(".profile__button-edit");
+const popupFormProfile = main.querySelector('#form__profile');
+const popupFormImage = main.querySelector('#popup_form-image');
 
-let profileName = main.querySelector('.profile__info-name');
-let profileAboutMe = main.querySelector('.profile__info-about-me');
+const buttonCloseProfile = main.querySelector('#close-button_profile');
+const buttonCloseImages = main.querySelector('#close-button_image');
+const buttonCloseImageOpened = main.querySelector('#close-button_popup-image');
+const buttonSaveProfile = main.querySelector('#save-button_profile');
+const buttonSaveImages = main.querySelector('#save-button_images');
+const buttonAdd = main.querySelector('.profile__add-button');
+const buttonEdit = main.querySelector('.profile__edit-button');
 
-let nameInput = popupProfile.querySelector('#form__input-name');
-let aboutInput = popupProfile.querySelector('#form__input-about-me');
+const profileName = main.querySelector('.profile__info-name');
+const profileAboutMe = main.querySelector('.profile__info-about-me');
 
-let titleInput = popupImages.querySelector('#form__input-title');
-let linkInput = popupImages.querySelector('#form__input-link');
+const nameInput = popupProfile.querySelector('#form__input-name');
+const aboutInput = popupProfile.querySelector('#form__input-about-me');
 
-editButton.addEventListener('click', function openPopupProfile(){
-  popupProfile.classList.add('popup_opened')
-  nameInput.value = profileName.textContent
-  aboutInput.value = profileAboutMe.textContent
-});
-
-addButton.addEventListener('click', function openPopupImages(){
-  popupImages.classList.add('popup_opened')
-});
-
-function closePopupProfile(){
-  popupProfile.classList.remove('popup_opened')
-}
-
-closeButtonProfile.addEventListener('click', closePopupProfile);
-
-function closePopupImages(){
-  popupImages.classList.remove('popup_opened')
-}
-
-closeButtonImages.addEventListener('click', closePopupImages);
-
-formProfile.addEventListener('submit', function formSubmitHandlerProfile (event) {
-	event.preventDefault();
-  profileName.textContent = nameInput.value
-  profileAboutMe.textContent = aboutInput.value
-  closePopupProfile();
-});
+const titleInput = popupAddImage.querySelector('#form__input-title');
+const linkInput = popupAddImage.querySelector('#form__input-link');
 
 const initialCards = [
   {
     name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+    alt: 'Горный пейзаш Архыза'
   },
   {
     name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+    alt: 'Озеро в заснеженной тайге'
   },
   {
     name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+    alt: 'Серые хрущевки'
   },
   {
     name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+    alt: 'Камчатская вершина с виднеющим ледяным покровом'
   },
   {
     name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+    alt: 'Железная дорога и лес'
   },
   {
     name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+    alt: 'Скалистый берег Байкала'
   }
 ];
 
-const elementImgs = initialCards.forEach( (item) => {
-  const elementsCopy = elementTemplate.cloneNode('true');
-  const deleteButton = elementsCopy.querySelector('.element__trash');
-  const imageButton = elementsCopy.querySelector('.element__button-img');
+function closePopup(popupElement){
+  popupElement.classList.remove('popup_opened');
+};
+
+buttonCloseProfile.addEventListener('click', () => {
+  closePopup(popupProfile);
+});
+
+buttonCloseImages.addEventListener('click', () => {
+  closePopup(popupAddImage);
+  popupAddImage.querySelector('#form__input-link').value.reset()
+  popupAddImage.querySelector('#form__input-title').value.reset()
+});
+
+function openPopup(popupElement){
+  popupElement.classList.add('popup_opened');
+  popupFormImage.reset()
+};
+
+buttonEdit.addEventListener('click', () => {
+  openPopup(popupProfile);
+  nameInput.value = profileName.textContent;
+  aboutInput.value = profileAboutMe.textContent;
+});
+
+buttonAdd.addEventListener('click', () => {
+  openPopup(popupAddImage);
+});
 
 
-  elementsCopy.querySelector('.element__img').src = item.link
-  elementsCopy.querySelector('.element__text').textContent = item.name
+popupFormProfile.addEventListener('submit', function formSubmitHandlerProfile (event) {
+	event.preventDefault();
+  profileName.textContent = nameInput.value
+  profileAboutMe.textContent = aboutInput.value
+  closePopup(popupProfile);
+});
 
-  elementsCopy.querySelector('.element__like').addEventListener('click',(e) => {
-    e.target.classList.toggle('element__like_active');
-  })
+buttonCloseImageOpened.addEventListener('click', () =>{
+  closePopup(popupOpenImage);
+});
 
-  elementsCopy.querySelector('.element__trash').addEventListener('click', function delet(){
-    const deleteImg = deleteButton.closest('.element')
-    deleteImg.remove();
+function addImage(elementCopy){
+  creadImage(elementCopy)
+}
+
+function creadImage(item){
+  const elementCopy = elementTemplate.cloneNode(true);
+  elementCopy.querySelector('.element__img').src = item.link
+  elementCopy.querySelector('.element__text').textContent = item.name
+  elementCopy.querySelector('.element__img').alt = item.alt;
+  elementsList.prepend(elementCopy);
+  likeAndDelete(elementCopy);
+  return elementCopy;
+}
+
+function renderImage(elementCopy){
+  elementsList.prepend(creadImage(elementCopy))
+}
+
+initialCards.reverse();
+initialCards.forEach(renderImage);
+
+popupFormImage.addEventListener('submit', function (event) {
+	event.preventDefault();
+  const link = popupAddImage.querySelector('#form__input-link').value
+  const name = popupAddImage.querySelector('#form__input-title').value
+  const item = {};
+  item.link = link;
+  item.name = name;
+  addImage(item)
+  closePopup(popupAddImage);
+});
+
+function likeAndDelete(elementCopy){
+  elementCopy.querySelector('.element__like').addEventListener('click', (event) => {
+    event.target.classList.toggle('element__like_active');
   });
   
-  imageButton.addEventListener('click', function openPopupImage(){
-    popupImage.classList.add('popup_opened');
-    main.querySelector('.popup__image-open').src = item.link
-    main.querySelector('.popup__text-open').textContent = item.name
-  });
-
-  elementsList.append(elementsCopy)
-});
-
-formImages.addEventListener('submit', function formSubmitHandlerImages(event) {
-	event.preventDefault();
-  const elementsCopy = elementTemplate.cloneNode('true');
-  const deleteButton = elementsCopy.querySelector('.element__trash');
-  const imageButton = elementsCopy.querySelector('.element__button-img');
-
-  elementsCopy.querySelector('.element__img').src = popupImages.querySelector('#form__input-link').value;
-  elementsCopy.querySelector('.element__text').textContent = popupImages.querySelector('#form__input-title').value;
-
-  elementsCopy.querySelector('.element__like').addEventListener('click', (e) => {
-    e.target.classList.toggle('element__like_active');
-  });
-
-  elementsCopy.querySelector('.element__trash').addEventListener('click', function delet(){
-    const deleteImg = deleteButton.closest('.element')
+  elementCopy.querySelector('.element__trash').addEventListener('click', () => {
+    const deleteImg = elementCopy.querySelector('.element__trash').closest('.element');
     deleteImg.remove();
+  })
+
+  elementCopy.querySelector('.element__button-img').addEventListener('click', function (){
+    openPopup(popupOpenImage)
+    main.querySelector('.popup__image').src = elementCopy.querySelector('.element__img').src
+    main.querySelector('.popup__text').textContent = elementCopy.querySelector('.element__text').textContent
+    
   });
+}
 
-  imageButton.addEventListener('click', function openPopupImage(){
-    popupImage.classList.add('popup_opened');
-    main.querySelector('.popup__image-open').src = popupImages.querySelector('#form__input-link').value;
-    main.querySelector('.popup__text-open').textContent = popupImages.querySelector('#form__input-title').value;
-  });
 
-  elementsList.prepend(elementsCopy)
-  closePopupImages();
-});
-
-closeButtonPopupImage.addEventListener('click', () =>{
-  popupImage.classList.remove('popup_opened');
-});

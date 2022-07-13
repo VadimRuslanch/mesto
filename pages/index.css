@@ -14,9 +14,9 @@
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
-@import url(../blocks/profile/__button-add/profile__button-add.css);
-@import url(../blocks/profile/__button-add-plus/profile__button-add-plus.css);
-@import url(../blocks/profile/__button-edit/profile__button-edit.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/profile/__add-button-plus/profile__add-button-plus.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__info-name/profile__info-name.css);
 @import url(../blocks/profile/__info-about-me/profile__info-about-me.css);
 
@@ -35,17 +35,16 @@
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__image/popup__image.css);
-@import url(../blocks/popup/__text-open/popup__text-open.css);
-@import url(../blocks/popup/__image-open/popup__image-open.css);
-@import url(../blocks/popup/_opracity/popup_opacity.css);
-@import url(../blocks/popup/__button-close/popup__button-close.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__header/popup__header.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__save-button/popup__save-button.css);
+@import url(../blocks/popup/__close-button/popup__button-close.css);
+@import url(../blocks/popup/_opacity/popup_opacity.css);
 
-@import url(../blocks/form/form.css);
-@import url(../blocks/form/__input-header/form__input-header.css);
-@import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__button-save/form__button-save.css);
-@import url(../blocks/form/__button-close/form__button-close.css);
+@import url(../blocks/popup/__open-image/popup__open-image.css);
+@import url(../blocks/popup/__text/popup__text.css);
+@import url(../blocks/popup/__image/popup__image.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

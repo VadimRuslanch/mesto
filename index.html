@@ -1,84 +1,85 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mestro</title>
-    <link rel="stylesheet" href="../mesto/pages/index.css">
-  </head>
-  <body class="page">
-    <header class="header">
-        <img class="header__logo" src="./images/logo.svg" alt="Логотип">
-    </header>
-    <main class="main">
-        <section class="profile">
-            <div class="profile__page-autor">
-                <img class="profile__avatar" src="./images/Jacques-yves-Cousteau.jpg" alt="Аватар">
-                <div class="profile__info">
-                    <div class="profile__name">
-                        <h1 class="profile__info-name">Жак-Ив Кусто</h1>
-                        <button class="profile__button-edit" type="button"></button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta content='true' name='HandheldFriendly'>
+        <meta content='width' name='MobileOptimized'>
+        <title>Mestro</title>
+        <link rel="stylesheet" href="../mesto/pages/index.css">
+    </head>
+    <body class="page">
+        <header class="header">
+            <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+        </header>
+        <main class="main">
+            <section class="profile">
+                <div class="profile__page-autor">
+                    <img class="profile__avatar" src="./images/Jacques-yves-Cousteau.jpg" alt="Аватар">
+                    <div class="profile__info">
+                        <div class="profile__name">
+                            <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+                            <button class="profile__edit-button" type="button"></button>
+                        </div>
+                        <p class="profile__info-about-me">Исследователь океана</p>
                     </div>
-                    <p class="profile__info-about-me">Исследователь океана</p>
                 </div>
-            </div>
-            <button class="profile__button-add" type="button">
-                <img class="profile__button-add-plus" src="./images/Add-Button.svg " alt="Добавить">
-            </button>
-        </section>
-
-        <section class="elements">
-        </section>
-
-        <template id="elementTemplate">
-            <article class="element">
-                <button class="element__button-img" type="button" >
-                    <img class="element__img" type="button" src=" " alt="Картинка Автора">
+                <button class="profile__add-button" type="button">
+                    <img class="profile__add-button-plus" src="./images/Add-Button.svg " alt="Добавить">
                 </button>
-                <input class='element__trash' type="button">
-                <div class="element__group-text-like">
-                    <h2 class="element__text"></h2>
-                    <input class="element__like" type="button">
+            </section>
+            <section class="elements">
+            </section>
+
+            <template id="elementTemplate">
+                <article class="element">
+                    <button class="element__button-img" type="button" >
+                        <img class="element__img" src=" " alt=" ">
+                    </button>
+                    <input class='element__trash' type="button">
+                    <div class="element__group-text-like">
+                        <h2 class="element__text"></h2>
+                        <input class="element__like" type="button">
+                    </div>
+                </article>
+            </template>
+
+            <section class="popup popup_opacity" id="popup_open-image">
+                <div class="popup__open-image">
+                    <img class="popup__image" src=" " alt=" ">
+                    <button class="popup__close-button" id="close-button_popup-image" type="button"></button>
+                    <h2 class="popup__text"></h2>
                 </div>
-            </article>
-        </template>
+            </section>
+            
+            <section class="popup" id="popup_profile">
+                <div class="popup__container">
+                    <form class="popup__form" id="form__profile" name="formInput">
+                        <h2 class="popup__header">Редактировать профиль</h2>
+                        <input class="popup__input" id="form__input-name" type="text" value='' placeholder="Ваше имя">
+                        <input class="popup__input" id="form__input-about-me" type="text" value='' placeholder="Кто вы?">
+                        <input class="popup__save-button" id="save-button_profile" type="submit" value="Сохранить">
+                        <input class="popup__close-button" id="close-button_profile" type="button">
+                    </form>
+                </div>     
+            </section>
 
-        <section class="popup" id="popup_image">
-            <div class="popup__image">
-                <img class="popup__image-open" src=" " alt="Картинка автора">
-                <button class="popup__button-close" id="button-close_popup-image" type="button"></button>
-                <h2 class="popup__text-open"></h2>
-            </div>
-        </section>
-        
-        <section class="popup" id="popup_profile">
-            <div class="popup__container">
-                <form class="form" id="form__profile" name="formInput">
-                    <h2 class="form__input-header">Редактировать профиль</h2>
-                    <input class="form__input" id="form__input-name" type="text" value='' placeholder="Ваше имя">
-                    <input class="form__input" id="form__input-about-me" type="text" value='' placeholder="Кто вы?">
-                    <input class="form__button-save" id="button-save_profile" type="submit" value="Сохранить">
-                    <button class="form__button-close" id="button-close_profile" type="button"></button>
-                </form>
-            </div>     
-        </section>
-
-        <section class="popup" id="popup_images">
-            <div class="popup__container">
-                <form class="form" id="form__images" name="formInput">
-                    <h2 class="form__input-header">Новое место</h2>
-                    <input class="form__input" id="form__input-title" type="text" value='' placeholder="Название">
-                    <input class="form__input" id="form__input-link" type="text" value='' placeholder="Ссылка на картинку">
-                    <input class="form__button-save" id="button-save_images" type="submit" value="Сохранить">
-                    <button class="form__button-close" id="button-close_images" type="button"></button>
-                </form>
-            </div>     
-        </section>
-    </main>
-    <footer class="footer" >
-        <p class="footer__text">&#169;Lebedev Vadim.2020</p>
-    </footer>
-    <script src="./pages/script.js"></script>
-  </body>
-  </html>
-
+            <section class="popup" id="popup_add-image">
+                <div class="popup__container">
+                    <form class="popup__form" id="popup_form-image" name="formInput">
+                        <h2 class="popup__header">Новое место</h2>
+                        <input class="popup__input" id="form__input-title" type="text" value='' placeholder="Название">
+                        <input class="popup__input" id="form__input-link" type="text" value='' placeholder="Ссылка на картинку">
+                        <input class="popup__save-button" id="save-button_images" type="submit" value="Сохранить">
+                        <input class="popup__close-button" id="close-button_image" type="button">
+                    </form>
+                </div>     
+            </section>
+        </main>
+        <footer class="footer" >
+            <p class="footer__text">&#169;Lebedev Vadim.2020</p>
+        </footer>
+        <script src="./pages/script.js"></script>
+    </body>
+</html>

@@ -1,4 +1,4 @@
-.form__button-save{
+.popup__save-button{
     border: none;
     padding: 0px;
     margin-top: 48px;
@@ -14,14 +14,14 @@
     border-radius: 2px;
 }
 
-.form__button-save:hover{
+.popup__save-button:hover{
     opacity: 0.8;
     transition: opacity 0.2s linear;
     cursor: pointer;
 }
 
 @media (min-width:320px) and (max-width:1280px){
-    .form__button-save{
+    .popup__save-button{
         width: calc((100vw - 320px)/(1280 - 320) * (358 - 238) + 238px);
         height: calc((100vw - 320px)/(1280 - 320) * (50 - 46) + 46px);
         font-size: calc((100vw - 320px)/(1280 - 320) * (18 - 14) + 14px);

@@ -89,7 +89,6 @@ buttonAdd.addEventListener('click', () => {
   openPopup(popupAddImage);
 });
 
-
 popupFormProfile.addEventListener('submit', function formSubmitHandlerProfile (event) {
 	event.preventDefault();
   profileName.textContent = nameInput.value
@@ -150,5 +149,3 @@ function likeAndDelete(elementCopy){
     
   });
 }
-
-

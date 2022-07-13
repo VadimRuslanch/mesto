@@ -27,6 +27,7 @@ const aboutInput = popupProfile.querySelector('#form__input-about-me');
 const titleInput = popupAddImage.querySelector('#form__input-title');
 const linkInput = popupAddImage.querySelector('#form__input-link');
 
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -70,13 +71,10 @@ buttonCloseProfile.addEventListener('click', () => {
 
 buttonCloseImages.addEventListener('click', () => {
   closePopup(popupAddImage);
-  popupAddImage.querySelector('#form__input-link').value.reset()
-  popupAddImage.querySelector('#form__input-title').value.reset()
 });
 
 function openPopup(popupElement){
   popupElement.classList.add('popup_opened');
-  popupFormImage.reset()
 };
 
 buttonEdit.addEventListener('click', () => {
@@ -124,11 +122,9 @@ initialCards.forEach(renderImage);
 
 popupFormImage.addEventListener('submit', function (event) {
 	event.preventDefault();
-  const link = popupAddImage.querySelector('#form__input-link').value
-  const name = popupAddImage.querySelector('#form__input-title').value
   const item = {};
-  item.link = link;
-  item.name = name;
+  item.link = linkInput.value;
+  item.name = titleInput.value;
   addImage(item)
   closePopup(popupAddImage);
 });
@@ -139,8 +135,7 @@ function likeAndDelete(elementCopy){
   });
   
   elementCopy.querySelector('.element__trash').addEventListener('click', () => {
-    const deleteImg = elementCopy.querySelector('.element__trash').closest('.element');
-    deleteImg.remove();
+    elementCopy.querySelector('.element__trash').closest('.element').remove()
   })
 
   elementCopy.querySelector('.element__button-img').addEventListener('click', function (){

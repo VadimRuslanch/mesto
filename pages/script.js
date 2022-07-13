@@ -14,7 +14,6 @@ const buttonCloseProfile = main.querySelector('#close-button_profile');
 const buttonCloseImages = main.querySelector('#close-button_image');
 const buttonCloseImageOpened = main.querySelector('#close-button_popup-image');
 
-const closeButtons = main.querySelector('.popup__close-button')
 const buttonSaveProfile = main.querySelector('#save-button_profile');
 const buttonSaveImages = main.querySelector('#save-button_images');
 const buttonAdd = main.querySelector('.profile__add-button');
@@ -62,24 +61,23 @@ const initialCards = [
   }
 ];
 
-// const closeButtonsArry = Array.from(closeButtons);
-// closeButtonsArry.forEach((buttonCloseImageOpened) => {
-//   const popup = buttonCloseImageOpened.closest('.popup');
-//   closeButtons.addEventListener('click', () => closePopup(popup));
-// });
 function closePopup(popupElement){
   popupElement.classList.remove('popup_opened');
 };
-buttonCloseProfile.addEventListener('click', () => {closePopup(popupProfile);
+const closeButtons = document.querySelectorAll('.popup__close-button');
+closeButtons.forEach((buttonCloseImageOpened) => {
+  const popup = buttonCloseImageOpened.closest('.popup');
+  buttonCloseImageOpened.addEventListener('click', () => closePopup(popup));
+  buttonCloseImages.addEventListener('click', () => closePopup(popup));
+  buttonCloseProfile.addEventListener('click', () => closePopup(popup));
 });
-buttonCloseImages.addEventListener('click', () => {closePopup(popupAddImage);
-});
-buttonCloseImageOpened.addEventListener('click', () =>{closePopup(popupOpenImage);
-});
+
+
 
 function openPopup(popupElement){
   popupElement.classList.add('popup_opened');
 };
+
 buttonEdit.addEventListener('click', () => {openPopup(popupProfile);
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAboutMe.textContent;
@@ -110,7 +108,7 @@ function creadImage(item){
   elementCopy.querySelector('.element__text').textContent = item.name
   elementCopy.querySelector('.element__img').alt = item.alt;
   elementsList.prepend(elementCopy);
-  likeAndDelete(elementCopy);
+  setEventListeners(elementCopy);
   return elementCopy;
 }
 
@@ -124,7 +122,7 @@ popupFormImage.addEventListener('submit', function (event) {
   event.target.reset()
 });
 
-function likeAndDelete(elementCopy){
+function setEventListeners(elementCopy){
   elementCopy.querySelector('.element__like').addEventListener('click', (event) => {
     event.target.classList.toggle('element__like_active');
   });

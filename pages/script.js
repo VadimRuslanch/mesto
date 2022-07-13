@@ -72,8 +72,6 @@ closeButtons.forEach((buttonCloseImageOpened) => {
   buttonCloseProfile.addEventListener('click', () => closePopup(popup));
 });
 
-
-
 function openPopup(popupElement){
   popupElement.classList.add('popup_opened');
 };

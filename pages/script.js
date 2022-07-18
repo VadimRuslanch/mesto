@@ -9,7 +9,8 @@ const popupOpen = main.querySelector('.popup_opened');
 const popupFormProfile = main.querySelector('#form__profile');
 const popupFormImage = main.querySelector('#popup_form-image');
 
-const buttonClose = main.querySelector('#close-button_popup-image');
+const closeButtons = document.querySelectorAll('.popup__close-button');
+const buttonClose = main.querySelector('.popup__close-button');
 const buttonSaveProfile = main.querySelector('#save-button_profile');
 const buttonSaveImages = main.querySelector('#save-button_images');
 const buttonAdd = main.querySelector('.profile__add-button');
@@ -61,7 +62,7 @@ const initialCards = [
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 };
-const closeButtons = document.querySelectorAll('.popup__close-button');
+
 closeButtons.forEach((buttonClose) => {
   const popup = buttonClose.closest('.popup');
   buttonClose.addEventListener('click', () => closePopup(popup));

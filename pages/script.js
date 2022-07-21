@@ -9,7 +9,6 @@ const popupOpen = main.querySelector('.popup_opened');
 const popupFormProfile = main.querySelector('#form-profile');
 const popupFormImage = main.querySelector('#form-image');
 const popupElement = document.querySelectorAll('.popup')
-const popupClose = document.querySelectorAll('#popup-close-Esc_Click')
 
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const buttonClose = main.querySelector('.popup__close-button');
@@ -143,8 +142,8 @@ function setEventListeners(cardElement, imageElement, textElement) {
   });
 }
 
-function searchPopup(popupClose){
-  const popup = popupClose.closest('.popup');
+function searchPopup(popupElement){
+  const popup = popupElement.closest('.popup');
   closePopup(popup)
 }
 

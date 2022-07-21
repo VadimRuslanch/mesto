@@ -1,16 +1,12 @@
 @import url(../style/normalize.css);
 @import url(../fonts/inter.css);
-@import url(./validate.js);
 
 @import url(../blocks/page/page.css);
-
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
-
 @import url(../blocks/main/main.css);
 
 @import url(../blocks/profile/profile.css);
-
 @import url(../blocks/profile/__page-autor/profile__page-autor.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
@@ -20,8 +16,6 @@
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__info-name/profile__info-name.css);
 @import url(../blocks/profile/__info-about-me/profile__info-about-me.css);
-
-
 
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
@@ -53,3 +47,5 @@
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
+
+@import url(./validate.js);

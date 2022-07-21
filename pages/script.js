@@ -6,12 +6,10 @@ const popupOpenImage = main.querySelector('#popup_open-image');
 const popupProfile = main.querySelector('#popup_profile');
 const popupAddImage = main.querySelector('#popup_add-image');
 const popupOpen = main.querySelector('.popup_opened');
-const popupFormProfile = main.querySelector('#form__profile');
-const popupFormImage = main.querySelector('#popup_form-image');
-
-// const popupConteire = document.querySelector('.popup__container')
-// const popupElement = document.querySelectorAll('.popup')
-// const popupClose = document.querySelectorAll('#popup-close-Esc_Click')
+const popupFormProfile = main.querySelector('#form-profile');
+const popupFormImage = main.querySelector('#form-image');
+const popupElement = document.querySelectorAll('.popup')
+const popupClose = document.querySelectorAll('#popup-close-Esc_Click')
 
 const closeButtons = document.querySelectorAll('.popup__close-button');
 const buttonClose = main.querySelector('.popup__close-button');
@@ -22,10 +20,10 @@ const buttonEdit = main.querySelector('.profile__edit-button');
 
 const profileName = main.querySelector('.profile__info-name');
 const profileAboutMe = main.querySelector('.profile__info-about-me');
-const nameInput = popupProfile.querySelector('#form__input-name');
-const aboutInput = popupProfile.querySelector('#form__input-about-me');
-const titleInput = popupAddImage.querySelector('#form__input-title');
-const linkInput = popupAddImage.querySelector('#form__input-link');
+const nameInput = popupProfile.querySelector('#input-name');
+const aboutInput = popupProfile.querySelector('#input-about-me');
+const titleInput = popupAddImage.querySelector('#input-title');
+const linkInput = popupAddImage.querySelector('#input-link');
 const popupImage = main.querySelector('.popup__image')
 const popupText = main.querySelector('.popup__text')
 const popupAltImage = main.querySelector('.popup__image')
@@ -154,6 +152,7 @@ function keyHandler(evt){
   if (evt.key === 'Escape'){
     popupElement.forEach(searchPopup)
   }
+  return console.log(evt.key)
 }
 
 document.addEventListener('keydown', keyHandler)
@@ -164,3 +163,70 @@ function mouseHandler(evt){
 
 document.addEventListener('click', mouseHandler)
 
+const showInputError = (item, formSelector, inputSelector, errorMessage) => {
+  const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`);
+  inputSelector.classList.add(item.inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(item.errorClass);
+};
+
+const hideInputError = (item, formSelector, inputSelector) => {
+  const errorElement = formSelector.querySelector(`.${inputSelector.id}-error`);
+  inputSelector.classList.remove(item.inputErrorClass);
+  errorElement.classList.remove(item.errorClass);
+  errorElement.textContent = '';
+};
+
+const isValid = (item, formSelector, inputSelector) => {
+  if (!inputSelector.validity.valid) {
+    showInputError(item, formSelector, inputSelector, inputSelector.validationMessage);
+  } else {
+    hideInputError(item, formSelector, inputSelector);
+  }
+};
+
+const searchInput = (item, formSelector) => {
+  const inputList = Array.from(formSelector.querySelectorAll(item.inputSelector))
+  const submitButtonSelector = formSelector.querySelector(item.submitButtonSelector)
+  toggleButtonState(item, inputList, submitButtonSelector)
+  inputList.forEach((inputSelector) => {
+    inputSelector.addEventListener('input', () =>{
+      isValid(item, formSelector, inputSelector)
+      toggleButtonState(item, inputList, submitButtonSelector)
+    });
+  });
+};
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputSelector) => {
+    return !inputSelector.validity.valid;
+  });
+
+}
+
+const toggleButtonState = (item, inputList, submitButtonSelector) => {
+  if(hasInvalidInput(inputList)){
+    submitButtonSelector.classList.add(item.inactiveButtonClass)
+  } else {
+    submitButtonSelector.classList.remove(item.inactiveButtonClass)
+  }
+}
+
+const enableValidation = (item) => {
+  const formList = Array.from(document.querySelectorAll(item.formSelector));
+  formList.forEach((formSelector) => {
+    formSelector.addEventListener('submit', (evt) => {
+      evt.preventDefault()
+    });
+    searchInput(item, formSelector)
+  });
+};
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+})

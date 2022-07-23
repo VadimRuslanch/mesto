@@ -8,6 +8,7 @@
         <meta content='width' name='MobileOptimized'>
         <title>Mestro</title>
         <link rel="stylesheet" href="./pages/index.css">
+        <script defer src="./scripts/validate.js"></script>
     </head>
     <body class="page">
         <header class="header">
@@ -26,7 +27,7 @@
                     </div>
                 </div>
                 <button class="profile__add-button" type="button">
-                    <img class="profile__add-button-plus" src="./images/Add-Button.svg " alt="Добавить">
+                    <div class="profile__add-button-plus"></div>
                 </button>
             </section>
             <section class="elements">
@@ -54,9 +55,9 @@
                 <div class="popup__container">
                     <form class="popup__form" id="form-profile" name="formInput" novalidate>
                         <h2 class="popup__header">Редактировать профиль</h2>
-                        <input class="popup__input" id="input-name" type="text" value='' placeholder="Ваше имя" minlength="2" maxlength="40" required>
+                        <input class="popup__input" id="input-name" type="text" placeholder="Ваше имя" minlength="2" maxlength="40" required>
                         <span class="popup__error input-name-error"></span>
-                        <input class="popup__input" id="input-about-me" type="text" value='' placeholder="Кто вы?" minlength="2" maxlength="200" required>
+                        <input class="popup__input" id="input-about-me" type="text" placeholder="Кто вы?" minlength="2" maxlength="200" required>
                         <span class="popup__error input-about-me-error"></span>
                         <input class="popup__save-button" id="save-button_profile" type="submit" value="Сохранить">
                         <button class="popup__close-button" type="button"></button>                        
@@ -67,9 +68,10 @@
                 <div class="popup__container">
                     <form class="popup__form" id="form-image" name="formInput" novalidate>
                         <h2 class="popup__header">Новое место</h2>
-                        <input class="popup__input" id="input-title" type="text" value='' placeholder="Название" minlength="1" maxlength="30" required>
+                        <input class="popup__input" id="input-title" type="text" placeholder="Название" minlength="2" maxlength="30" required>
+                        <!-- На счет этой ошибки в описании задания на notion.so указана другая информация -->
                         <span class="popup__error input-title-error"></span>
-                        <input class="popup__input" id="input-link" type="url" value='' placeholder="Ссылка на картинку" required>
+                        <input class="popup__input" id="input-link" type="url" placeholder="Ссылка на картинку" required>
                         <span class="popup__error input-link-error"></span>
                         <input class="popup__save-button" id="save-button_images" type="submit" value="Сохранить">
                         <button class="popup__close-button" type="button"></button>
@@ -80,7 +82,6 @@
         <footer class="footer" >
             <p class="footer__text">&#169;Lebedev Vadim.2020</p>
         </footer>
-        <script src="./pages/script.js"></script>
-        <script src="./pages/validate.js"></script>
+        <script src="./scripts/script.js"></script>
     </body>
 </html>

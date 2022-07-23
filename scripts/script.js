@@ -1,22 +1,20 @@
 const main = document.querySelector(".main");
 const elementsList = main.querySelector('.elements');
 const elementTemplate = document.querySelector('#elementTemplate').content.querySelector('.element');
-
+const popupElement = document.querySelectorAll('.popup')
+const popupOpen = document.querySelectorAll('.popup_opened');
+const popupContainer = document.querySelectorAll('.popup__container')
 const popupOpenImage = main.querySelector('#popup_open-image');
 const popupProfile = main.querySelector('#popup_profile');
 const popupAddImage = main.querySelector('#popup_add-image');
-const popupOpen = main.querySelector('.popup_opened');
 const popupFormProfile = main.querySelector('#form-profile');
 const popupFormImage = main.querySelector('#form-image');
-const popupElement = document.querySelectorAll('.popup')
-
-const closeButtons = document.querySelectorAll('.popup__close-button');
+const buttonsClose = document.querySelectorAll('.popup__close-button');
 const buttonClose = main.querySelector('.popup__close-button');
 const buttonSaveProfile = main.querySelector('#save-button_profile');
 const buttonSaveImages = main.querySelector('#save-button_images');
 const buttonAdd = main.querySelector('.profile__add-button');
 const buttonEdit = main.querySelector('.profile__edit-button');
-
 const profileName = main.querySelector('.profile__info-name');
 const profileAboutMe = main.querySelector('.profile__info-about-me');
 const nameInput = popupProfile.querySelector('#input-name');
@@ -26,37 +24,30 @@ const linkInput = popupAddImage.querySelector('#input-link');
 const popupImage = main.querySelector('.popup__image')
 const popupText = main.querySelector('.popup__text')
 const popupAltImage = main.querySelector('.popup__image')
-
 const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    alt: 'Горный пейзаш Архыза'
   },
   {
     name: 'Челябинская область',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    alt: 'Озеро в заснеженной тайге'
   },
   {
     name: 'Иваново',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    alt: 'Серые хрущевки'
   },
   {
     name: 'Камчатка',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    alt: 'Камчатская вершина с виднеющим ледяным покровом'
   },
   {
     name: 'Холмогорский район',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    alt: 'Железная дорога и лес'
   },
   {
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    alt: 'Скалистый берег Байкала'
   }
 ];
 
@@ -64,9 +55,22 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 };
 
-closeButtons.forEach((buttonClose) => {
+buttonsClose.forEach((buttonClose) => {
   const popup = buttonClose.closest('.popup');
   buttonClose.addEventListener('click', () => closePopup(popup));
+  const closeEsc = (evt) => {
+    const keyEsc = evt.key ==='Escape';
+    if (keyEsc){
+      closePopup(popup)
+    }
+    evt.target.removeEventListener('keydown', closeEsc)
+  }
+  document.addEventListener('keydown', closeEsc)
+  popup.addEventListener('click', (evt) => {
+    if(evt.target.classList.contains('popup_opened')){
+      closePopup(popup)
+    }
+  });
 });
 
 function openPopup(popupElement) {
@@ -90,9 +94,9 @@ popupFormProfile.addEventListener('submit', (event) => {
   closePopup(popupProfile);
 });
 
-function createImage(item) {
-  const elementCopy = createCard (item)
-  elementsList.prepend(elementCopy)
+function addCard(item) {
+  const newCard = createCard (item)
+  elementsList.prepend(newCard)
 }
 
 function createCard(item){
@@ -101,63 +105,40 @@ function createCard(item){
   const textElement = cardElement.querySelector('.element__text');
   imageElement.src = item.link
   textElement.textContent = item.name
-  imageElement.alt = item.alt;
+  imageElement.alt = item.name;
   setEventListeners(cardElement, imageElement, textElement);
   return cardElement;
 }
 
 initialCards.reverse();
-initialCards.forEach(createImage);
-
-function addImage(elementCopy) {
-  createImage(elementCopy)
+initialCards.forEach(addCard);
+function addImage(newCard) {
+  addCard(newCard)
 }
 
-popupFormImage.addEventListener('submit', function (event) {
-  event.preventDefault();
+popupFormImage.addEventListener('submit', function (evt, submitButtonSelector, inactiveButtonClass) {
   const item = {};
   item.link = linkInput.value;
   item.name = titleInput.value;
   addImage(item)
   closePopup(popupAddImage);
-  event.target.reset()
+  evt.target.reset()
+  buttonSaveImages.classList.add('popup__save-button_disabled')
 });
-
-elementsList.addEventListener('click', (evt) => {
-  if(evt.target.classList.contains('element__like')){
-    evt.target.classList.toggle('element__like_active');
-  }
-})
 
 function setEventListeners(cardElement, imageElement, textElement) {
   cardElement.querySelector('.element__trash').addEventListener('click', () => {
     cardElement.remove()
   })
-
   cardElement.querySelector('.element__button-img').addEventListener('click', function () {
     openPopup(popupOpenImage)
     popupImage.src = imageElement.src
     popupText.textContent = textElement.textContent
-    popupImage.alt = imageElement.alt
+    popupImage.alt = textElement.textContent
   });
+  cardElement.addEventListener('click', (evt) => {
+    if(evt.target.classList.contains('element__like')){
+      evt.target.classList.toggle('element__like_active');
+    }
+  })
 }
-
-function searchPopup(popupElement){
-  const popup = popupElement.closest('.popup');
-  closePopup(popup)
-}
-
-function keyHandler(evt){
-  if (evt.key === 'Escape'){
-    popupElement.forEach(searchPopup)
-  }
-  return console.log(evt.key)
-}
-
-document.addEventListener('keydown', keyHandler)
-
-function mouseHandler(evt){
-  evt.target.classList.remove('popup_opened')
-}
-
-document.addEventListener('click', mouseHandler)

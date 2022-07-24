@@ -1,18 +1,17 @@
 const main = document.querySelector(".main");
 const elementsList = main.querySelector('.elements');
 const elementTemplate = document.querySelector('#elementTemplate').content.querySelector('.element');
-const popupElement = document.querySelectorAll('.popup')
+const popupElement = document.querySelectorAll('.popup');
 const popupOpen = document.querySelectorAll('.popup_opened');
-const popupContainer = document.querySelectorAll('.popup__container')
-const popupOpenImage = main.querySelector('#popup_open-image');
-const popupProfile = main.querySelector('#popup_profile');
-const popupAddImage = main.querySelector('#popup_add-image');
+const popupContainer = document.querySelectorAll('.popup__container');
+const popupOpenImage = main.querySelector('#popup-open-image');
+const popupProfile = main.querySelector('#popup-profile');
+const popupAddImage = main.querySelector('#popup-add-image');
 const popupFormProfile = main.querySelector('#form-profile');
 const popupFormImage = main.querySelector('#form-image');
 const buttonsClose = document.querySelectorAll('.popup__close-button');
-const buttonClose = main.querySelector('.popup__close-button');
-const buttonSaveProfile = main.querySelector('#save-button_profile');
-const buttonSaveImages = main.querySelector('#save-button_images');
+const buttonSaveProfile = main.querySelector('#save-button-profile');
+const buttonSaveImages = main.querySelector('#save-button-images');
 const buttonAdd = main.querySelector('.profile__add-button');
 const buttonEdit = main.querySelector('.profile__edit-button');
 const profileName = main.querySelector('.profile__info-name');
@@ -21,9 +20,9 @@ const nameInput = popupProfile.querySelector('#input-name');
 const aboutInput = popupProfile.querySelector('#input-about-me');
 const titleInput = popupAddImage.querySelector('#input-title');
 const linkInput = popupAddImage.querySelector('#input-link');
-const popupImage = main.querySelector('.popup__image')
-const popupText = main.querySelector('.popup__text')
-const popupAltImage = main.querySelector('.popup__image')
+const popupImage = main.querySelector('.popup__image');
+const popupText = main.querySelector('.popup__text');
+const popupAltImage = main.querySelector('.popup__image');
 const initialCards = [
   {
     name: 'Архыз',
@@ -53,29 +52,35 @@ const initialCards = [
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown', keydownHendler)
+  document.removeEventListener('click', clickHandler)
 };
-
-buttonsClose.forEach((buttonClose) => {
-  const popup = buttonClose.closest('.popup');
-  buttonClose.addEventListener('click', () => closePopup(popup));
-  const closeEsc = (evt) => {
-    const keyEsc = evt.key ==='Escape';
-    if (keyEsc){
-      closePopup(popup)
-    }
-    evt.target.removeEventListener('keydown', closeEsc)
-  }
-  document.addEventListener('keydown', closeEsc)
-  popup.addEventListener('click', (evt) => {
-    if(evt.target.classList.contains('popup_opened')){
-      closePopup(popup)
-    }
-  });
-});
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown', keydownHendler)
+  document.addEventListener('click', clickHandler)
 };
+
+const seachAndClosePopup = () =>{
+    popupElement.forEach((popupProfile) => {
+    const popup = popupProfile.closest('.popup')
+    closePopup(popup)
+  })
+}
+
+const clickHandler = (evt) => {
+  if(evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')){
+    seachAndClosePopup()
+  }
+}
+
+const keydownHendler = (evt) => {
+  const keyEsc = evt.key ==='Escape';
+  if (keyEsc){
+    seachAndClosePopup()
+  }
+}
 
 buttonEdit.addEventListener('click', () => {
   openPopup(popupProfile);

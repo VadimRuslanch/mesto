@@ -116,10 +116,11 @@ function addImage(newCard) {
   addCard(newCard)
 }
 
-popupFormImage.addEventListener('submit', function (evt, submitButtonSelector, inactiveButtonClass) {
-  const item = {};
-  item.link = linkInput.value;
-  item.name = titleInput.value;
+popupFormImage.addEventListener('submit', function (evt) {
+  const item = {
+    name: titleInput.value,
+    link: linkInput.value,
+  };
   addImage(item)
   closePopup(popupAddImage);
   evt.target.reset()

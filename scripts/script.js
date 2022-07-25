@@ -62,7 +62,7 @@ function openPopup(popupElement) {
   document.addEventListener('click', clickHandler)
 };
 
-const seachAndClosePopup = () =>{
+const seachPopup = () =>{
     popupElement.forEach((popupProfile) => {
     const popup = popupProfile.closest('.popup')
     closePopup(popup)
@@ -71,14 +71,14 @@ const seachAndClosePopup = () =>{
 
 const clickHandler = (evt) => {
   if(evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')){
-    seachAndClosePopup()
+    seachPopup()
   }
 }
 
 const keydownHendler = (evt) => {
   const keyEsc = evt.key ==='Escape';
   if (keyEsc){
-    seachAndClosePopup()
+    seachPopup()
   }
 }
 

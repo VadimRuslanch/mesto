@@ -53,32 +53,31 @@ const initialCards = [
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
   document.removeEventListener('keydown', keydownHendler)
-  document.removeEventListener('click', clickHandler)
+  document.removeEventListener('click', clickOnPopupHandler)
 };
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', keydownHendler)
-  document.addEventListener('click', clickHandler)
+  popupElement.addEventListener('click', clickOnPopupHandler)
 };
 
-const seachPopup = () =>{
-    popupElement.forEach((popupProfile) => {
-    const popup = popupProfile.closest('.popup')
-    closePopup(popup)
-  })
+const searchAndCloseOpenedPopup = evt => {
+  const openedPopup = document.querySelector('.popup_opened')
+  closePopup(openedPopup)
 }
 
-const clickHandler = (evt) => {
+const clickOnPopupHandler = (evt) => {
   if(evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')){
-    seachPopup()
+    searchAndCloseOpenedPopup (evt)
   }
 }
 
 const keydownHendler = (evt) => {
   const keyEsc = evt.key ==='Escape';
   if (keyEsc){
-    seachPopup()
+    searchAndCloseOpenedPopup(evt)
+    return console.log()
   }
 }
 

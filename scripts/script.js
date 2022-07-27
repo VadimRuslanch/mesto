@@ -62,22 +62,28 @@ function openPopup(popupElement) {
   popupElement.addEventListener('click', clickOnPopupHandler)
 };
 
-const searchAndCloseOpenedPopup = evt => {
-  const openedPopup = document.querySelector('.popup_opened')
-  closePopup(openedPopup)
+const searchAndCloseClickOpenedPopup = (evt) => {
+  const openedPopup = evt.currentTarget;
+  closePopup(openedPopup);
+}
+
+const searchAndCloseEscOpenedPopup = () => {
+  popupElement.forEach((popupProfile) => {
+    const openedPopup = popupProfile.closest('.popup')
+    closePopup(openedPopup)
+  })
 }
 
 const clickOnPopupHandler = (evt) => {
   if(evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-button')){
-    searchAndCloseOpenedPopup (evt)
+    searchAndCloseClickOpenedPopup (evt)
   }
 }
 
 const keydownHendler = (evt) => {
   const keyEsc = evt.key ==='Escape';
   if (keyEsc){
-    searchAndCloseOpenedPopup(evt)
-    return console.log()
+    searchAndCloseEscOpenedPopup()
   }
 }
 

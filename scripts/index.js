@@ -79,13 +79,14 @@ popupFormImage.addEventListener('submit', (evt) => {
   closePopup(popupAddImage);
   evt.target.reset()
   buttonSaveImages.classList.add('popup__save-button_disabled')
+  buttonSaveImages.setAttribute("disabled", "disabled");
 });
 
 // закрытие мадального окна
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
   document.removeEventListener('keydown', keydownHendler)
-  document.removeEventListener('click', clickOnPopupHandler)
+  popupElement.removeEventListener('click', clickOnPopupHandler)
 };
 
 function searchAndCloseClickOpenedPopup(evt) {

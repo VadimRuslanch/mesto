@@ -1,3 +1,4 @@
+// Я извиняюсь я случайно отпраил работу с прошлого спринта
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js'
 const main = document.querySelector(".main");

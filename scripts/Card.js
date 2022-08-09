@@ -1,9 +1,9 @@
-import { openPopup, popupOpenImage } from './index.js'
 export class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
-    this._templateSelector = templateSelector
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   };
 
   _getTemplate = () => {
@@ -25,33 +25,32 @@ export class Card {
     };
   };
 
-  _openImage = () => {
-    openPopup(popupOpenImage);
-    document.querySelector('.popup__image').src = this._link;
-    document.querySelector('.popup__text').textContent = this._name;
-    document.querySelector('.popup__image').alt = this._name;
-  }
-
-
   _setEventListeners = () => {
-    this._element.querySelector('.element__trash').addEventListener('click', () => {
+    this._cardImage = this._element.querySelector('.element__img');
+    this._nameImage = this._element.querySelector('.element__text');
+    this._likeButton = this._element.querySelector('.element__like');
+    this._removeImageButtton = this._element.querySelector('.element__trash');
+
+    this._removeImageButtton.addEventListener('click', () => {
       this._removeElement()
     });
-    this._element.querySelector('.element__like').addEventListener('click', (evt) => {
+
+    this._likeButton.addEventListener('click', (evt) => {
       this._activeLike(evt)
     });
-    this._element.querySelector('.element__button-img').addEventListener('click', () => {
-      this._openImage()
-    })
+
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link)
+    });
   };
 
   generateCard = () => {
     this._element = this._getTemplate();
     this._setEventListeners();
 
-    this._element.querySelector('.element__img').src = this._link;
-    this._element.querySelector('.element__text').textContent = this._name;
-    this._element.querySelector('.element__img').alt = this._name;
+    this._cardImage.src = this._link;
+    this._nameImage.textContent = this._name;
+    this._cardImage.alt = this._name;
     return this._element
   };
 };

@@ -1,22 +1,32 @@
-// Я извиняюсь я случайно отпраил работу с прошлого спринта
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js'
 const main = document.querySelector(".main");
+const profileName = main.querySelector('.profile__info-name');
+const profileAboutMe = main.querySelector('.profile__info-about-me');
+const buttonAdd = main.querySelector('.profile__add-button');
+const buttonEdit = main.querySelector('.profile__edit-button');
+const CardElements = document.querySelector('.elements');
 const popupElement = document.querySelectorAll('.popup');
 const popupProfile = main.querySelector('#popup-profile');
 const popupAddImage = main.querySelector('#popup-add-image');
-const popupFormProfile = main.querySelector('#form-profile');
-const popupFormImage = document.querySelector('#form-image');
 const buttonSaveImages = main.querySelector('#save-button-images');
-const buttonAdd = main.querySelector('.profile__add-button');
-const buttonEdit = main.querySelector('.profile__edit-button');
 const popupOpenImage = document.querySelector('#popup-open-image');
-const profileName = main.querySelector('.profile__info-name');
-const profileAboutMe = main.querySelector('.profile__info-about-me');
-const nameInput = popupProfile.querySelector('#input-name');
-const aboutInput = popupProfile.querySelector('#input-about-me');
-const titleInput = document.querySelector('#input-title');
-const linkInput = document.querySelector('#input-link');
+const formProfile = popupProfile.querySelector('#form-profile');
+const formImage = popupAddImage.querySelector('#form-image');
+const nameInput = formProfile.querySelector('#input-name');
+const aboutInput = formProfile.querySelector('#input-about-me');
+const titleInput = formImage.querySelector('#input-title');
+const linkInput = formImage.querySelector('#input-link');
+const openedCardImage = document.querySelector('.popup__image');
+const openedCardName = document.querySelector('.popup__text');
+const validationConfig = {
+  inputSelector: '.popup__input',
+  submitButton: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+  formList: document.querySelectorAll('.popup__form'),
+};
 const initialCards = [
   {
     name: 'Архыз',
@@ -43,44 +53,37 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
   }
 ];
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-  formList: document.querySelectorAll('.popup__form'),
-};
+initialCards.reverse();
+
+function createCard(item) {
+  const card = new Card(item, "#elementTemplate", handleCardClick);
+  const cardElement = card.generateCard()
+  CardElements.prepend(cardElement)
+  return cardElement
+}
 
 (() => {
-  initialCards.reverse();
   initialCards.forEach((item) => {
-    const card = new Card(item, "#elementTemplate");
-    const cardElement = card.generateCard()
-    document.querySelector('.elements').prepend(cardElement)
+    createCard(item)
   });
 })();
 
-const formImage = new FormValidator(validationConfig, '#popup-add-image')
-formImage.enableValidation()
-
-const formProfile = new FormValidator(validationConfig, '#popup-profile')
-formProfile.enableValidation();
-
-popupFormImage.addEventListener('submit', (evt) => {
+formImage.addEventListener('submit', (evt) => {
   const item = {
     name: titleInput.value,
     link: linkInput.value,
   };
-  const newCard = new Card(item, "#elementTemplate")
-  const newCardElement = newCard.generateCard()
-  document.querySelector('.elements').prepend(newCardElement)
+  createCard(item)
   closePopup(popupAddImage);
   evt.target.reset()
-  buttonSaveImages.classList.add('popup__save-button_disabled')
-  buttonSaveImages.setAttribute("disabled", "disabled");
+  FormValidator.resetValidation()
 });
+
+const formProfileClassValid = new FormValidator(validationConfig, formProfile);
+formProfileClassValid.enableValidation();
+
+const formImageClassValid = new FormValidator(validationConfig, formImage);
+formImageClassValid.enableValidation();
 
 // закрытие мадального окна
 function closePopup(popupElement) {
@@ -125,6 +128,13 @@ buttonAdd.addEventListener('click', () => {
   openPopup(popupAddImage);
 });
 
+function handleCardClick(name, link) {
+  openedCardImage.src = link;
+  openedCardName.textContent = name;
+  openedCardImage.alt = name;
+  openPopup(popupOpenImage);
+}
+
 // отправка формы профиля
 buttonEdit.addEventListener('click', () => {
   openPopup(popupProfile);
@@ -132,11 +142,9 @@ buttonEdit.addEventListener('click', () => {
   aboutInput.value = profileAboutMe.textContent;
 });
 
-popupFormProfile.addEventListener('submit', (event) => {
+formProfile.addEventListener('submit', (event) => {
   event.preventDefault();
   profileName.textContent = nameInput.value
   profileAboutMe.textContent = aboutInput.value
   closePopup(popupProfile);
 })
-
-export { openPopup, popupOpenImage }

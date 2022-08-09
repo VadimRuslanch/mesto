@@ -16,7 +16,7 @@ export class Card {
   };
 
   _removeElement = () => {
-    this._element.remove()
+    this._element.remove();
   };
 
   _activeLike = (evt) => {
@@ -32,15 +32,15 @@ export class Card {
     this._removeImageButtton = this._element.querySelector('.element__trash');
 
     this._removeImageButtton.addEventListener('click', () => {
-      this._removeElement()
+      this._removeElement();
     });
 
     this._likeButton.addEventListener('click', (evt) => {
-      this._activeLike(evt)
+      this._activeLike(evt);
     });
 
     this._cardImage.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link)
+      this._handleCardClick(this._name, this._link);
     });
   };
 
@@ -51,6 +51,6 @@ export class Card {
     this._cardImage.src = this._link;
     this._nameImage.textContent = this._name;
     this._cardImage.alt = this._name;
-    return this._element
+    return this._element;
   };
 };

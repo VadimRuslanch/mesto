@@ -2,7 +2,9 @@ export class FormValidator {
   constructor(setting, formElement) {
     this._formElement = formElement;
     this._inputSelector = setting.inputSelector;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     this._submitButton = setting.submitButton;
+    this._submitButtonSelector = this._formElement.querySelector(this._submitButton);
     this._inactiveButtonClass = setting.inactiveButtonClass;
     this._inputErrorClass = setting.inputErrorClass;
     this._errorClass = setting.errorClass;
@@ -35,14 +37,14 @@ export class FormValidator {
     return this._inputList.some((inputSelector) => {
       return !inputSelector.validity.valid;
     });
-  }
+  };
 
   _toggleButtonState = () => {
     if (this._hasInvalidInput()) {
-      this._submitButtonSelector.classList.add(this._inactiveButtonClass)
+      this._submitButtonSelector.classList.add(this._inactiveButtonClass);
       this._submitButtonSelector.setAttribute("disabled", "disabled");
     } else {
-      this._submitButtonSelector.classList.remove(this._inactiveButtonClass)
+      this._submitButtonSelector.classList.remove(this._inactiveButtonClass);
       this._submitButtonSelector.removeAttribute("disabled", "disabled");
     }
   }
@@ -50,19 +52,18 @@ export class FormValidator {
   _searchInput = () => {
     this._inputList.forEach((inputSelector) => {
       inputSelector.addEventListener('input', () => {
-        this._isValid(inputSelector)
-        this._toggleButtonState(inputSelector)
+        this._isValid(inputSelector);
+        this._toggleButtonState(inputSelector);
       });
     });
   };
 
   _setEventListeners = () => {
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    this._submitButtonSelector = this._formElement.querySelector(this._submitButton);
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-  }
+  };
+
   resetValidation = () => {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
@@ -71,8 +72,8 @@ export class FormValidator {
   };
 
   enableValidation = () => {
-    this._setEventListeners()
-    this._searchInput()
-    this._toggleButtonState()
+    this._setEventListeners();
+    this._searchInput();
+    this._toggleButtonState();
   };
 };

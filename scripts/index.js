@@ -53,36 +53,39 @@ const initialCards = [
   }
 ];
 initialCards.reverse();
+const formProfileValidation = new FormValidator(validationConfig, formProfile);
+formProfileValidation.enableValidation();
+
+const formImageValidation = new FormValidator(validationConfig, formImage);
+formImageValidation.enableValidation();
 
 function createCard(item) {
   const card = new Card(item, "#elementTemplate", handleCardClick);
   const cardElement = card.generateCard();
-  CardElements.prepend(cardElement);
   return cardElement;
 };
 
-(() => {
-  initialCards.forEach((item) => {
-    createCard(item);
-  });
-})();
+function addCard(item){
+  const newCard = createCard(item);
+  CardElements.prepend(newCard);
+}
+
+initialCards.forEach((item)=>{
+  addCard(item)
+})
 
 formImage.addEventListener('submit', (evt) => {
   const item = {
     name: titleInput.value,
     link: linkInput.value,
   };
-  createCard(item);
+  addCard(item)
   closePopup(popupAddImage);
   evt.target.reset();
-  FormValidator.resetValidation();
+  formImageValidation.resetValidation();
 });
 
-const formProfileClassValid = new FormValidator(validationConfig, formProfile);
-formProfileClassValid.enableValidation();
 
-const formImageClassValid = new FormValidator(validationConfig, formImage);
-formImageClassValid.enableValidation();
 
 // закрытие мадального окна
 function closePopup(popupElement) {

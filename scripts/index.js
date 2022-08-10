@@ -53,6 +53,7 @@ const initialCards = [
   }
 ];
 initialCards.reverse();
+
 const formProfileValidation = new FormValidator(validationConfig, formProfile);
 formProfileValidation.enableValidation();
 
@@ -65,12 +66,12 @@ function createCard(item) {
   return cardElement;
 };
 
-function addCard(item){
+function addCard(item) {
   const newCard = createCard(item);
   CardElements.prepend(newCard);
 }
 
-initialCards.forEach((item)=>{
+initialCards.forEach((item) => {
   addCard(item)
 })
 
@@ -84,8 +85,6 @@ formImage.addEventListener('submit', (evt) => {
   evt.target.reset();
   formImageValidation.resetValidation();
 });
-
-
 
 // закрытие мадального окна
 function closePopup(popupElement) {

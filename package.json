@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "css-loader": "^6.7.1",
+    "cssnano": "^5.1.13",
+    "mini-css-extract-plugin": "^2.6.1",
+    "postcss-loader": "^7.0.1"
+  }
+}

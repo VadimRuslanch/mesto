@@ -1,5 +1,7 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import Section from './components/Section.js';
+// import './styles/index.css';
 const main = document.querySelector(".main");
 const profileName = main.querySelector('.profile__info-name');
 const profileAboutMe = main.querySelector('.profile__info-about-me');

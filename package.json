@@ -1,0 +1,22 @@
+{
+  "name": "yandex.praktikum",
+  "version": "0.0.1",
+  "description": "Learning platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VadimRuslanch/mesto.git"
+  },
+  "author": "Vadim Lebedev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VadimRuslanch/mesto/issues"
+  },
+  "homepage": "https://github.com/VadimRuslanch/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.74.0"
+  }
+}

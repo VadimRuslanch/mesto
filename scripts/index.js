@@ -5,16 +5,16 @@ import {
   formImage,
   CardElements,
   buttonAdd,
-  // openedCardImage,
-  // openedCardName,
   popupOpenImage,
   buttonEdit,
   nameInput,
   aboutInput,
-  popupAddImage,
-  popupProfile,
   profileName,
   profileAboutMe,
+  titleInput,
+  linkInput,
+  popupAddImage,
+  popupProfile,
 } from '../utils/constants.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
@@ -22,67 +22,56 @@ import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-
-initialCards.reverse();
+import UserInfo from '../components/UserInfo.js';
 
 const formProfileValidation = new FormValidator(validationConfig, formProfile);
-formProfileValidation.enableValidation();
-
 const formImageValidation = new FormValidator(validationConfig, formImage);
-
 const popupWithImage = new PopupWithImage(popupOpenImage);
+const userInfo = new UserInfo(nameInput, aboutInput, profileName, profileAboutMe);
 
-const CardList = new Section({
+initialCards.reverse();
+formProfileValidation.enableValidation();
+formImageValidation.enableValidation();
+
+const creadeCard = (data) => {
+  const card = new Card(data, "#elementTemplate", {
+    handleCardClick: (name, link) => {
+      popupWithImage.handleCardClick(name, link)
+    }
+  });
+  return card.generateCard();
+}
+
+const сardList = new Section({
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, "#elementTemplate", popupWithImage.handleCardClick);
-    const cardElement = card.generateCard();
-    CardList.addItem(cardElement)
-    
+  renderer: (data) => {
+    сardList.addItem(creadeCard(data))
   }
 }, CardElements)
-CardList.renderedItems()
+сardList.rendererItems()
 
-// const popupWithForm = new PopupWithForm()
+const submitImage = new PopupWithForm(popupAddImage, {
+  handleFormSubmit: (data) => {
+    сardList.addItem(creadeCard(data));
+    submitImage.close();
+    console.log(data)
+  }
+})
+submitImage.setEventListeners();
 
-formProfile.addEventListener('submit', (event) => {
-  event.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileAboutMe.textContent = aboutInput.value;
-  const popup = new Popup(popupProfile)
-  popup.open();
+const submitProfile = new PopupWithForm(popupProfile, {
+  handleFormSubmit: () => {
+    userInfo.setUserInfo()
+    submitProfile.close()
+  }
 });
-
-
-
-
-
-formImage.addEventListener('submit', (evt) => {
-  const item = {
-    name: titleInput.value,
-    link: linkInput.value,
-  };
-  addCard(item)
-  closePopup(popupAddImage);
-  evt.target.reset();
-  formImageValidation.resetValidation();
-});
-
-
-
-
-
+submitProfile.setEventListeners();
 
 buttonAdd.addEventListener('click', () => {
-  const popup = new Popup(popupAddImage)
-  popup.open()
+  submitImage.open()
 });
 
 buttonEdit.addEventListener('click', () => {
-  const popup = new Popup(popupProfile)
-  popup.open();
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileAboutMe.textContent;
+  userInfo.getUserInfo()
+  submitProfile.open()
 });
-
-

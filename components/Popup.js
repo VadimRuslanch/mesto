@@ -1,11 +1,9 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popup = popupSelector;
-        console.log(this._popup)
     };
 
     open() {
-        console.log(this._popup)
         this._popup.classList.add('popup_opened');
         this._setEventListeners();
     };
@@ -18,7 +16,6 @@ export default class Popup {
     _handleEscClose(evt) {
         const keyEsc = evt.key === 'Escape';
         if (keyEsc) {
-            console.log(keyEsc)
             this.close();
         };
     };

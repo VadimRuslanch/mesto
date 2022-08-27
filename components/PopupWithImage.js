@@ -12,6 +12,6 @@ export default class PopupWithImage extends Popup {
     handleCardClick(name, link) {
         openedCardImage.src = link;
         openedCardName.textContent = name;
-        super.open(); 
+        super.open();
     };
 };

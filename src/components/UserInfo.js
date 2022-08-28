@@ -1,4 +1,3 @@
-import Popup from "./Popup.js";
 export default class UserInfo {
     constructor(nameForm, aboutForm, nameProfile, aboutProfile) {
         this._nameForm = nameForm;
@@ -13,6 +12,6 @@ export default class UserInfo {
     setUserInfo() {
         this._nameProfile.textContent = this._nameForm.value;
         this._aboutProfile.textContent = this._aboutForm.value;
-        
+
     };
 };

@@ -1,3 +1,4 @@
+import './style/index.css';
 import {
   initialCards,
   validationConfig,
@@ -11,18 +12,15 @@ import {
   aboutInput,
   profileName,
   profileAboutMe,
-  titleInput,
-  linkInput,
   popupAddImage,
   popupProfile,
-} from '../utils/constants.js';
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import Section from '../components/Section.js';
-import Popup from '../components/Popup.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import UserInfo from '../components/UserInfo.js';
+} from './utils/constants.js' 
+import Card from './scripts/Card.js';
+import FormValidator from './scripts/FormValidator.js';
+import Section from './components/Section.js';
+import PopupWithImage from './components/PopupWithImage.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import UserInfo from './components/UserInfo.js';
 
 const formProfileValidation = new FormValidator(validationConfig, formProfile);
 const formImageValidation = new FormValidator(validationConfig, formImage);

@@ -15,8 +15,8 @@ import {
   popupAddImage,
   popupProfile,
 } from './utils/constants.js' 
-import Card from './scripts/Card.js';
-import FormValidator from './scripts/FormValidator.js';
+import Card from './components/Card.js';
+import FormValidator from './components/FormValidator.js';
 import Section from './components/Section.js';
 import PopupWithImage from './components/PopupWithImage.js';
 import PopupWithForm from './components/PopupWithForm.js';
@@ -52,7 +52,7 @@ const submitImage = new PopupWithForm(popupAddImage, {
   handleFormSubmit: (data) => {
     сardList.addItem(creadeCard(data));
     submitImage.close();
-    console.log(data)
+    formImageValidation.resetValidation();
   }
 })
 submitImage.setEventListeners();

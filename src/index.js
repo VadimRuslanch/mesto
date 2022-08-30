@@ -4,17 +4,19 @@ import {
   validationConfig,
   formProfile,
   formImage,
-  CardElements,
+  сardElements,
   buttonAdd,
   popupOpenImage,
   buttonEdit,
-  nameInput,
-  aboutInput,
-  profileName,
-  profileAboutMe,
+  userNameSubmit,
+  userAboutSubmit,
+  userName,
+  userAbout,
   popupAddImage,
   popupProfile,
-} from './utils/constants.js' 
+  openedCardImage,
+  openedCardName,
+} from './utils/constants.js'
 import Card from './components/Card.js';
 import FormValidator from './components/FormValidator.js';
 import Section from './components/Section.js';
@@ -24,8 +26,8 @@ import UserInfo from './components/UserInfo.js';
 
 const formProfileValidation = new FormValidator(validationConfig, formProfile);
 const formImageValidation = new FormValidator(validationConfig, formImage);
-const popupWithImage = new PopupWithImage(popupOpenImage);
-const userInfo = new UserInfo(nameInput, aboutInput, profileName, profileAboutMe);
+const popupWithImage = new PopupWithImage(popupOpenImage, openedCardImage, openedCardName);
+
 
 initialCards.reverse();
 formProfileValidation.enableValidation();
@@ -45,7 +47,7 @@ const сardList = new Section({
   renderer: (data) => {
     сardList.addItem(creadeCard(data))
   }
-}, CardElements)
+}, сardElements)
 сardList.rendererItems()
 
 const submitImage = new PopupWithForm(popupAddImage, {
@@ -56,20 +58,26 @@ const submitImage = new PopupWithForm(popupAddImage, {
   }
 })
 submitImage.setEventListeners();
-
-const submitProfile = new PopupWithForm(popupProfile, {
-  handleFormSubmit: () => {
-    userInfo.setUserInfo()
-    submitProfile.close()
-  }
-});
-submitProfile.setEventListeners();
-
 buttonAdd.addEventListener('click', () => {
   submitImage.open()
 });
 
+const userInfo = new UserInfo(popupProfile, {
+  nameElement: userName,
+  aboutElement: userAbout,
+});
+
+
+const submitProfile = new PopupWithForm(popupProfile, {
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo(data);
+    submitProfile.close();
+  }
+});
+submitProfile.setEventListeners();
+
 buttonEdit.addEventListener('click', () => {
-  userInfo.getUserInfo()
-  submitProfile.open()
+  userNameSubmit.value = userInfo.getUserInfo().name;
+  userAboutSubmit.value = userInfo.getUserInfo().about;
+  submitProfile.open();
 });

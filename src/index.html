@@ -20,10 +20,10 @@
                 <img class="profile__avatar" src="<%=require('./images/Jacques-yves-Cousteau.jpg')%>" alt="Аватар">
                 <div class="profile__info">
                     <div class="profile__name">
-                        <h1 class="profile__info-name">Жак-Ив Кусто</h1>
+                        <h1 class="profile__info-name profile-info" id="name">Жак-Ив Кусто</h1>
                         <button class="profile__edit-button" type="button"></button>
                     </div>
-                    <p class="profile__info-about-me">Исследователь океана</p>
+                    <p class="profile__info-about-me profile-info" id="about">Исследователь океана</p>
                 </div>
             </div>
             <button class="profile__add-button" type="button">
@@ -53,12 +53,12 @@
         </section>
         <section class="popup" id="popup-profile">
             <div class="popup__container">
-                <form class="popup__form popup__form-profile" id="form-profile" name="formInput" novalidate>
+                <form class="popup__form popup__form-profile" id="form-profile" novalidate>
                     <h2 class="popup__header">Редактировать профиль</h2>
-                    <input class="popup__input" id="input-name" type="text" placeholder="Ваше имя" minlength="2"
+                    <input class="popup__input" id="input-name" type="text" name="name" placeholder="Ваше имя" minlength="2"
                         maxlength="40" required>
                     <span class="popup__error input-name-error"></span>
-                    <input class="popup__input" id="input-about-me" type="text" placeholder="Кто вы?" minlength="2"
+                    <input class="popup__input" id="input-about-me" type="text" name="about" placeholder="Кто вы?" minlength="2"
                         maxlength="200" required>
                     <span class="popup__error input-about-me-error"></span>
                     <input class="popup__save-button" id="save-button-profile" type="submit" value="Сохранить">
@@ -68,7 +68,7 @@
         </section>
         <section class="popup" id="popup-add-image">
             <div class="popup__container">
-                <form class="popup__form popup__form-image" id="form-image" name="formInput" novalidate>
+                <form class="popup__form popup__form-image" id="form-image" novalidate>
                     <h2 class="popup__header">Новое место</h2>
                     <input class="popup__input" id="input-title" type="text" name="name" placeholder="Название"
                         minlength="2" maxlength="30" required>

@@ -3,10 +3,12 @@
     margin: 0px;
     display: flex;
     align-items: center;
+    max-width: 730px;
 }
 
 @media screen and (max-width:768px){
     .profile__page-autor{
         flex-flow: column;
+        max-width: 282px;
     }
 }

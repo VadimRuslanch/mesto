@@ -3,4 +3,5 @@
     flex-flow: row;
     align-items:baseline;
     justify-content: space-between;
+    width: fit-content;
 }

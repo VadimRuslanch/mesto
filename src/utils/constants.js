@@ -1,17 +1,19 @@
 export const main = document.querySelector(".main");
-export const profileName = main.querySelector('.profile__info-name');
-export const profileAboutMe = main.querySelector('.profile__info-about-me');
+
+
 export const buttonAdd = main.querySelector('.profile__add-button');
 export const buttonEdit = main.querySelector('.profile__edit-button');
-export const CardElements = document.querySelector('.elements');
+export const сardElements = document.querySelector('.elements');
 export const popupElement = document.querySelectorAll('.popup');
 export const popupProfile = main.querySelector('#popup-profile');
 export const popupAddImage = main.querySelector('#popup-add-image');
 export const popupOpenImage = document.querySelector('#popup-open-image');
 export const formProfile = popupProfile.querySelector('#form-profile');
+export const userNameSubmit = formProfile.querySelector('#input-name');
+export const userName = main.querySelector('.profile__info-name');
+export const userAbout = main.querySelector('.profile__info-about-me');
+export const userAboutSubmit = formProfile.querySelector('#input-about-me');
 export const formImage = popupAddImage.querySelector('#form-image');
-export const nameInput = formProfile.querySelector('#input-name');
-export const aboutInput = formProfile.querySelector('#input-about-me');
 export const titleInput = formImage.querySelector('#input-title');
 export const linkInput = formImage.querySelector('#input-link');
 export const openedCardImage = document.querySelector('.popup__image');

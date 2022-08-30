@@ -72,6 +72,7 @@ const submitProfile = new PopupWithForm(popupProfile, {
   handleFormSubmit: (data) => {
     userInfo.setUserInfo(data);
     submitProfile.close();
+    formProfileValidation.resetValidation();
   }
 });
 submitProfile.setEventListeners();

@@ -8,13 +8,13 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 540px;
+    max-width: 530px;
 }
 
 @media (min-width:320px) and (max-width:1280px){
     .profile__info-name{
         font-size:calc((100vw - 320px)/(1280 - 320) * (42 - 27) + 27px);
         line-height:calc((100vw - 320px)/(1280 - 320) * (48 - 33) + 33px);
-        max-width:calc((100vw - 320px)/(1280 - 320) * (540 - 258) + 258px);
+        max-width:calc((100vw - 320px)/(1280 - 320) * (530 - 248) + 248px);
     }
 }

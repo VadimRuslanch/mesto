@@ -62,7 +62,7 @@ buttonAdd.addEventListener('click', () => {
   submitImage.open()
 });
 
-const userInfo = new UserInfo(popupProfile, {
+const userInfo = new UserInfo({
   nameElement: userName,
   aboutElement: userAbout,
 });

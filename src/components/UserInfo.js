@@ -1,9 +1,7 @@
 export default class UserInfo {
-    constructor(popupSelector, { nameElement, aboutElement }) {
+    constructor({ nameElement, aboutElement }) {
         this._nameElement = nameElement;
         this._aboutElement = aboutElement;
-        this._profile = document.querySelector(".profile__info");
-        this._infoList = this._profile.querySelectorAll('.profile-info');
     };
 
     getUserInfo() {

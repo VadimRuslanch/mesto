@@ -11,19 +11,24 @@
 </head>
 
 <body class="page">
+
     <header class="header">
         <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
     </header>
+
     <main class="main">
+
         <section class="profile">
             <div class="profile__page-autor">
-                <img class="profile__avatar" src="<%=require('./images/Jacques-yves-Cousteau.jpg')%>" alt="Аватар">
+                <button class="profile__avatar-button">
+                    <img class="profile__avatar" src="#" alt="Аватар">
+                </button>
                 <div class="profile__info">
                     <div class="profile__name">
-                        <h1 class="profile__info-name profile-info" id="name">Жак-Ив Кусто</h1>
+                        <h1 class="profile__info-name profile-info" id="name"></h1>
                         <button class="profile__edit-button" type="button"></button>
                     </div>
-                    <p class="profile__info-about-me profile-info" id="about">Исследователь океана</p>
+                    <p class="profile__info-about-me profile-info" id="about"></p>
                 </div>
             </div>
             <button class="profile__add-button" type="button">
@@ -32,6 +37,7 @@
         </section>
         <section class="elements">
         </section>
+
         <template id="elementTemplate">
             <article class="element">
                 <button class="element__button-img" type="button">
@@ -40,20 +46,17 @@
                 <input class='element__trash' type="button">
                 <div class="element__group-text-like">
                     <h2 class="element__text"></h2>
-                    <input class="element__like" type="button">
+                    <div class="element__likes">
+                        <input class="element__like" type="button">
+                        <span class="element__likes-number"></span>
+                    </div>
                 </div>
             </article>
         </template>
-        <section class="popup popup_opacity" id="popup-open-image">
-            <div class="popup__open-image">
-                <img class="popup__image" src=" " alt=" ">
-                <button class="popup__close-button" type="button"></button>
-                <h2 class="popup__text"></h2>
-            </div>
-        </section>
+
         <section class="popup" id="popup-profile">
             <div class="popup__container">
-                <form class="popup__form popup__form-profile" id="form-profile" novalidate>
+                <form class="popup__form popup__form_media" id="form-profile" novalidate>
                     <h2 class="popup__header">Редактировать профиль</h2>
                     <input class="popup__input" id="input-name" type="text" name="name" placeholder="Ваше имя"
                         minlength="2" maxlength="40" required>
@@ -66,11 +69,12 @@
                 </form>
             </div>
         </section>
+
         <section class="popup" id="popup-add-image">
             <div class="popup__container">
-                <form class="popup__form popup__form-image" id="form-image" novalidate>
+                <form class="popup__form popup__form_media" id="form-image" novalidate>
                     <h2 class="popup__header">Новое место</h2>
-                    <input class="popup__input" id="input-title" type="text" name="name" placeholder="Название"
+                    <input class="popup__input"  id="input-title" type="text" name="name" placeholder="Название"
                         minlength="2" maxlength="30" required>
                     <span class="popup__error input-title-error"></span>
                     <input class="popup__input" id="input-link" type="url" name="link" placeholder="Ссылка на картинку"
@@ -81,10 +85,43 @@
                 </form>
             </div>
         </section>
+
+        <section class="popup" id="popup-open-image">
+            <div class="popup__open-image">
+                <img class="popup__image" src="#" alt="#">
+                <button class="popup__close-button" type="button"></button>
+                <h2 class="popup__text"></h2>
+            </div>
+        </section>
+
+        <section class="popup" id="popup-delete-image">
+            <div class="popup__container">
+                <form class="popup__form" id="form-delete-image" novalidate>
+                    <button class="popup__close-button" type="button"></button>
+                    <h3 class="popup__header popup__header_delete">Вы уверены?</h3>
+                    <input class="popup__save-button" id="delete-button-images" type="submit" value="Да">
+                </form>
+            </div>
+        </section>
+
+        <section class="popup" id="popup-avatar">
+            <div class="popup__container">
+                <form class="popup__form" id="form-avatar" novalidate>
+                    <button class="popup__close-button" type="button"></button>
+                    <h2 class="popup__header">Обновить аватар</h2>
+                    <input class="popup__input" id="input-link" type="url" name="link" placeholder="Ссылка на картинку" required>
+                    <span class="popup__error popup__error_padding input-link-error"></span>
+                    <input class="popup__save-button" id="save-button-avatar" type="submit" value="Сохранить">
+                </form>
+            </div>
+        </section>
+
     </main>
+
     <footer class="footer">
         <p class="footer__text">&#169;Lebedev Vadim.2022</p>
     </footer>
+
 </body>
 
 </html>

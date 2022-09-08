@@ -11,10 +11,10 @@
     padding: 0;
     opacity: 0;
     transition: opacity 0.3s;
-};
+}
 
 @media (min-width:320px) and (max-width:1280px) {
     .popup__error {
         max-width: calc((100vw - 320px)/(1280 - 320) * (358 - 238) + 238px);
-    };    
+    }
 }

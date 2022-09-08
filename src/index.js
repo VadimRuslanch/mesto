@@ -1,6 +1,6 @@
 import "./style/index.css"
 import {
-  validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEdit, buttonEditAvatar, userAvatar
+  validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEditProfile, buttonEditAvatar, userAvatar
 } from './script/utils/constants.js'
 import Card from './script/components/Card.js';
 import FormValidator from './script/components/FormValidator.js';
@@ -167,14 +167,14 @@ const submitImage = new PopupWithForm({
   }
 });
 
+deleteCardPopup.setEventListeners();
 submitProfile.setEventListeners();
 submitAvatar.setEventListeners();
-deleteCardPopup.setEventListeners();
 submitImage.setEventListeners();
 
 /* -------------- Слушатели --------------- */
 
-buttonEdit.addEventListener('click', () => {
+buttonEditProfile.addEventListener('click', () => {
   formProfileValidation.toggleButtonState();
   userNameSubmit.value = userInfo.getUserInfo().name;
   userAboutSubmit.value = userInfo.getUserInfo().about;

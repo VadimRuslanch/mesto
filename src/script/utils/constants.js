@@ -2,7 +2,6 @@ export const main = document.querySelector(".main");
 export const userNameSubmit = main.querySelector('#input-name');
 export const userAboutSubmit = main.querySelector('#input-about-me');
 export const buttonAdd = main.querySelector('.profile__add-button');
-export const buttonEdit = main.querySelector('.profile__edit-button');
 export const buttonEditAvatar = main.querySelector(".profile__avatar-button")
 export const validationConfig = {
   inputSelector: '.popup__input',
@@ -12,4 +11,3 @@ export const validationConfig = {
   errorClass: 'popup__error_visible',
   formList: document.querySelectorAll('.popup__form'),
 };
-// export const popupAddImage = main.querySelector('#popup-add-image');

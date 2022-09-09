@@ -168,7 +168,6 @@ const cartPopup = new PopupWithForm({
   }
 });
 
-
 deleteCardPopup.setEventListeners();
 viewImagePopup.setEventListeners();
 profilePopup.setEventListeners();

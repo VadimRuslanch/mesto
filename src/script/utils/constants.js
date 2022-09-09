@@ -3,6 +3,7 @@ export const userNameSubmit = main.querySelector('#input-name');
 export const userAboutSubmit = main.querySelector('#input-about-me');
 export const buttonAdd = main.querySelector('.profile__add-button');
 export const buttonEditAvatar = main.querySelector(".profile__avatar-button")
+export const buttonEditUser = main.querySelector(".profile__edit-button")
 export const validationConfig = {
   inputSelector: '.popup__input',
   submitButton: '.popup__save-button',

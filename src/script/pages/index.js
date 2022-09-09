@@ -1,6 +1,6 @@
 import "./index.css"
 import {
-  validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEdit, buttonEditAvatar
+  validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEditUser, buttonEditAvatar
 } from '../utils/constants.js'
 import Cart from '../components/Cart.js';
 import FormValidator from '../components/FormValidator.js';
@@ -176,7 +176,7 @@ cartPopup.setEventListeners();
 
 /* -------------- Слушатели --------------- */
 
-buttonEdit.addEventListener('click', () => {
+buttonEditUser.addEventListener('click', () => {
   formProfileValidation.resetValidation();
   const {name, about} = userInfo.getUserInfo()
   userNameSubmit.value = name;

@@ -20,6 +20,8 @@ export default class Card {
     this._likeNumber = this._element.querySelector('.element__likes-number');
   };
 
+
+
   _getTemplate = () => {
     const cardElement = document
       .querySelector(this._templateSelector)
@@ -29,16 +31,18 @@ export default class Card {
     return cardElement;
   };
 
+
+
   _setEventListeners = () => {
-    // слушатель кнопки удаления карточки
+    // слушатель кнопки удаления карточки 
     this._buttonDeleteImage.addEventListener('click', () => this._handleClickIconeDelete(this._cardId));
-    // открытие попапа просмотра изображения кликом по изображению
+    // открытие попапа просмотра изображения кликом по изображению 
     this._cardImage.addEventListener('click', () => this._handleCardClick(this._name, this._link));
-    // слушатель кнопки лайк
+    // слушатель кнопки лайк 
     this._likeButton.addEventListener('click', () => this._activeLike());
   };
 
-  // Удаление карточки
+  // Удаление карточки 
   removeElement = () => {
     this._element.remove();
     this._element = null;
@@ -50,7 +54,7 @@ export default class Card {
     };
   };
 
-  // лайк Карточки
+  // лайк Карточки 
   _activeLike = () => {
     if (this._likeButton.classList.contains('element__like_active')) {
       this._handleRemoveLike(this._cardId);
@@ -59,7 +63,7 @@ export default class Card {
     };
   };
 
-  // Проверка наличия лайка 
+  // Проверка наличия лайка  
   _hasCardLiked() {
     if (this._likes.some((user) => {
       return this._userId === user._id;
@@ -68,7 +72,7 @@ export default class Card {
     };
   };
 
-  // счетчик лайков
+  // счетчик лайков 
   handleLikeCard(data) {
     this._likes = data.likes;
     this._likeNumber.textContent = this._likes.length;
@@ -84,7 +88,6 @@ export default class Card {
     this._hasRemoveButtonDeleteImage();
     this._hasCardLiked();
     this._setEventListeners();
-
     return this._element;
   };
-};
+}; 

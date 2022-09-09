@@ -1,15 +1,15 @@
-import "./style/index.css"
+import "./index.css"
 import {
-  validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEdit, buttonEditAvatar, userAvatar
-} from './script/utils/constants.js'
-import Card from './script/components/Card.js';
-import FormValidator from './script/components/FormValidator.js';
-import Section from './script/components/Section.js';
-import PopupWithImage from './script/components/PopupWithImage.js';
-import PopupWithForm from './script/components/PopupWithForm.js';
-import PopupWithConfirmation from './script/components/PopupWithConfirmation.js';
-import UserInfo from './script/components/UserInfo.js';
-import Api from './script/components/Api.js';
+  validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEdit, buttonEditAvatar
+} from '../utils/constants.js'
+import Cart from '../components/Cart.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
+import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 
 /* -------------- Валидация --------------- */
 
@@ -35,11 +35,11 @@ const api = new Api({
 let userId
 
 // Загрузка данных пользователя и карточек
-Promise.all([api.getCard(), api.getUserInfo()])
+Promise.all([api.getCart(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
     userInfo.setUserInfo(userData);
     userId = userData._id;
-    сardList.rendererItems(initialCards);
+    сartList.rendererItems(initialCards);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
@@ -53,17 +53,18 @@ const userInfo = new UserInfo({
 });
 
 // Отправка формы пользователя на сервер
-const submitProfile = new PopupWithForm({
+const profilePopup = new PopupWithForm({
   popupElement: '#popup-profile',
   handleFormSubmit: (userData) => {
-    submitProfile.loading(true)
+    profilePopup.loading(true)
     api.editUserInfo(userData)
       .then((userData) => {
         userInfo.setUserInfo(userData);
-        submitProfile.close();
+        profilePopup.close();
+        // submitProfile.setInputValues(userData)
       })
       .finally(() => {
-        submitProfile.loading(false);
+        profilePopup.loading(false);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -72,17 +73,17 @@ const submitProfile = new PopupWithForm({
 });
 
 // отправка аватара на сервер
-const submitAvatar = new PopupWithForm({
+const avatarPopup = new PopupWithForm({
   popupElement: '#popup-avatar',
   handleFormSubmit: (userData) => {
-    submitAvatar.loading(true);
+    avatarPopup.loading(true);
     api.editUserAvatar(userData)
       .then((userData) => {
-        userAvatar.src = userData.avatar;
-        submitAvatar.close()
+        userInfo.setUserInfo(userData)
+        avatarPopup.close()
       })
       .finally(() => {
-        submitAvatar.loading(false);
+        avatarPopup.loading(false);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -95,39 +96,39 @@ const submitAvatar = new PopupWithForm({
 const viewImagePopup = new PopupWithImage('#popup-open-image');
 
 // Функция создания новой карточки
-const creadeCard = (data) => {
-  const card = new Card({
+const creadeCart = (data) => {
+  const cart = new Cart({
     data: data,
     userId: userId,
     templateSelector: "#elementTemplate",
     handleCardClick: (name, link) => {
       viewImagePopup.handleCardClick(name, link)
     },
-    handleSetLike: (cardId) => {
-      api.setLike(cardId)
+    handleSetLike: (cartId) => {
+      api.setLike(cartId)
         .then((data) => {
-          card.handleLikeCard(data);
+          cart.handleLikeCard(data);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
         });
     },
-    handleRemoveLike: (cardId) => {
-      api.delete(cardId)
+    handleRemoveLike: (cartId) => {
+      api.delete(cartId)
         .then((data) => {
-          card.handleLikeCard(data);
+          cart.handleLikeCard(data);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
         });
     },
-    handleClickIconeDelete: (cardId) => {
+    handleClickIconeDelete: (cartId) => {
       deleteCardPopup.open();
-      deleteCardPopup.submitCallback(() => {
-        api.deleteCard(cardId)
+      deleteCardPopup.setSubmitCallback(() => {
+        api.deleteCard(cartId)
           .then(() => {
             deleteCardPopup.close();
-            card.removeElement();
+            cart.removeElement();
           })
           .catch((err) => {
             console.log(`Ошибка: ${err}`);
@@ -135,7 +136,7 @@ const creadeCard = (data) => {
       })
     }
   });
-  return card.generateCard();
+  return cart.generateCard();
 };
 
 const deleteCardPopup = new PopupWithConfirmation({
@@ -143,23 +144,23 @@ const deleteCardPopup = new PopupWithConfirmation({
 });
 
 // // Добавлние карточки на сайт
-const сardList = new Section({
-  renderer: (card) => сardList.addItem(creadeCard(card)),
+const сartList = new Section({
+  renderer: (card) => сartList.prependItem(creadeCart(card)),
   containerSelector: '.elements'
 });
 
 // Отправка даннах картинки на сервер
-const submitImage = new PopupWithForm({
+const cartPopup = new PopupWithForm({
   popupElement: '#popup-add-image',
-  handleFormSubmit: (formData) => {
-    submitImage.loading(true);
-    api.addCard(formData)
+  handleFormSubmit: (cartData) => {
+    cartPopup.loading(true);
+    api.addCard(cartData)
       .then((formData) => {
-        сardList.addItem(creadeCard(formData));
-        submitImage.close();
+        сartList.prependItem(creadeCart(formData));
+        cartPopup.close();
       })
       .finally(() => {
-        submitImage.loading(false);
+        cartPopup.loading(false);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -167,26 +168,29 @@ const submitImage = new PopupWithForm({
   }
 });
 
-submitProfile.setEventListeners();
-submitAvatar.setEventListeners();
+
 deleteCardPopup.setEventListeners();
-submitImage.setEventListeners();
+viewImagePopup.setEventListeners();
+profilePopup.setEventListeners();
+avatarPopup.setEventListeners();
+cartPopup.setEventListeners();
 
 /* -------------- Слушатели --------------- */
 
 buttonEdit.addEventListener('click', () => {
-  formProfileValidation.toggleButtonState();
-  userNameSubmit.value = userInfo.getUserInfo().name;
-  userAboutSubmit.value = userInfo.getUserInfo().about;
-  submitProfile.open();
+  formProfileValidation.resetValidation();
+  const {name, about} = userInfo.getUserInfo()
+  userNameSubmit.value = name;
+  userAboutSubmit.value = about;
+  profilePopup.open();
 });
 
 buttonEditAvatar.addEventListener('click', () => {
-  formAvatarValidation.toggleButtonState();
-  submitAvatar.open();
+  formAvatarValidation.resetValidation();
+  avatarPopup.open();
 });
 
 buttonAdd.addEventListener('click', () => {
-  formImageValidation.toggleButtonState();
-  submitImage.open()
+  formImageValidation.resetValidation();
+  cartPopup.open()
 });

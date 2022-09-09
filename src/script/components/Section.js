@@ -4,8 +4,8 @@ export default class Section {
         this._container = document.querySelector(containerSelector);
     };
 
-    addItem(formData) {
-        this._container.append(formData);
+    prependItem(formData) {
+        this._container.prepend(formData);
     };
 
     rendererItems(data) {

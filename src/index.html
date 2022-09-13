@@ -25,10 +25,10 @@
                 </button>
                 <div class="profile__info">
                     <div class="profile__name">
-                        <h1 class="profile__info-name profile-info" id="name"></h1>
+                        <h1 class="profile__info-name profile-info" id="name" name="name"></h1>
                         <button class="profile__edit-button" type="button"></button>
                     </div>
-                    <p class="profile__info-about-me profile-info" id="about"></p>
+                    <p class="profile__info-about-me profile-info" id="about" name="about"></p>
                 </div>
             </div>
             <button class="profile__add-button" type="button">
@@ -56,7 +56,7 @@
 
         <section class="popup" id="popup-profile">
             <div class="popup__container">
-                <form class="popup__form popup__form_media" id="form-profile" novalidate>
+                <form class="popup__form popup__form_media" id="form-profile" name="form-profile" novalidate>
                     <h2 class="popup__header">Редактировать профиль</h2>
                     <input class="popup__input" id="input-name" type="text" name="name" placeholder="Ваше имя"
                         minlength="2" maxlength="40" required>
@@ -72,9 +72,9 @@
 
         <section class="popup" id="popup-add-image">
             <div class="popup__container">
-                <form class="popup__form popup__form_media" id="form-image" novalidate>
+                <form class="popup__form popup__form_media" id="form-image" name="form-image" novalidate>
                     <h2 class="popup__header">Новое место</h2>
-                    <input class="popup__input"  id="input-title" type="text" name="name" placeholder="Название"
+                    <input class="popup__input" id="input-title" type="text" name="name" placeholder="Название"
                         minlength="2" maxlength="30" required>
                     <span class="popup__error input-title-error"></span>
                     <input class="popup__input" id="input-link" type="url" name="link" placeholder="Ссылка на картинку"
@@ -106,10 +106,11 @@
 
         <section class="popup" id="popup-avatar">
             <div class="popup__container">
-                <form class="popup__form" id="form-avatar" novalidate>
+                <form class="popup__form" id="form-avatar" name="form-avatar" novalidate>
                     <button class="popup__close-button" type="button"></button>
                     <h2 class="popup__header">Обновить аватар</h2>
-                    <input class="popup__input" id="input-avatar" type="url" name="link" placeholder="Ссылка на картинку" required>
+                    <input class="popup__input" id="input-avatar" type="url" name="link"
+                        placeholder="Ссылка на картинку" required>
                     <span class="popup__error popup__error_padding input-avatar-error"></span>
                     <input class="popup__save-button" id="save-button-avatar" type="submit" value="Сохранить">
                 </form>

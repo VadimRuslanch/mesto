@@ -1,24 +1,28 @@
-import "./index.css"
-import {
-  validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEditUser, buttonEditAvatar
-} from '../utils/constants.js'
-import Cart from '../components/Cart.js';
-import FormValidator from '../components/FormValidator.js';
-import Section from '../components/Section.js';
+import "./index.css";
+import { validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEditUser, buttonEditAvatar } from '../utils/constants.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
-import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
+import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
+import Section from '../components/Section.js';
+import Card from '../components/Cart.js';
 import Api from '../components/Api.js';
 
 /* -------------- Валидация --------------- */
 
-const formProfileValidation = new FormValidator(validationConfig, '#form-profile');
-const formAvatarValidation = new FormValidator(validationConfig, '#form-avatar');
-const formImageValidation = new FormValidator(validationConfig, '#form-image');
-formProfileValidation.enableValidation();
-formAvatarValidation.enableValidation();
-formImageValidation.enableValidation();
+const formValidators = {};
+
+const enableValidation = (config) => {
+  const formList = config.formList;
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+enableValidation(validationConfig);
 
 /* -------------- API --------------- */
 
@@ -39,7 +43,7 @@ Promise.all([api.getCart(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
     userInfo.setUserInfo(userData);
     userId = userData._id;
-    сartList.rendererItems(initialCards);
+    сardList.rendererItems(initialCards);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
@@ -61,7 +65,6 @@ const profilePopup = new PopupWithForm({
       .then((userData) => {
         userInfo.setUserInfo(userData);
         profilePopup.close();
-        // submitProfile.setInputValues(userData)
       })
       .finally(() => {
         profilePopup.loading(false);
@@ -96,39 +99,39 @@ const avatarPopup = new PopupWithForm({
 const viewImagePopup = new PopupWithImage('#popup-open-image');
 
 // Функция создания новой карточки
-const creadeCart = (data) => {
-  const cart = new Cart({
+const createCard = (data) => {
+  const card = new Card({
     data: data,
     userId: userId,
     templateSelector: "#elementTemplate",
     handleCardClick: (name, link) => {
       viewImagePopup.handleCardClick(name, link)
     },
-    handleSetLike: (cartId) => {
-      api.setLike(cartId)
+    handleSetLike: (cardId) => {
+      api.setLike(cardId)
         .then((data) => {
-          cart.handleLikeCard(data);
+          card.handleLikeCard(data);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
         });
     },
-    handleRemoveLike: (cartId) => {
-      api.delete(cartId)
+    handleRemoveLike: (cardId) => {
+      api.delete(cardId)
         .then((data) => {
-          cart.handleLikeCard(data);
+          card.handleLikeCard(data);
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
         });
     },
-    handleClickIconeDelete: (cartId) => {
+    handleClickIconeDelete: (cardId) => {
       deleteCardPopup.open();
       deleteCardPopup.setSubmitCallback(() => {
-        api.deleteCard(cartId)
+        api.deleteCard(cardId)
           .then(() => {
             deleteCardPopup.close();
-            cart.removeElement();
+            card.removeElement();
           })
           .catch((err) => {
             console.log(`Ошибка: ${err}`);
@@ -136,31 +139,26 @@ const creadeCart = (data) => {
       })
     }
   });
-  return cart.generateCard();
+  return card.generateCard();
 };
 
-const deleteCardPopup = new PopupWithConfirmation({
-  popupSelector: '#popup-delete-image'
-});
+const deleteCardPopup = new PopupWithConfirmation({ popupSelector: '#popup-delete-image' });
 
 // // Добавлние карточки на сайт
-const сartList = new Section({
-  renderer: (card) => сartList.prependItem(creadeCart(card)),
-  containerSelector: '.elements'
-});
+const сardList = new Section({ renderer: (card) => сardList.prependItem(createCard(card)), containerSelector: '.elements' });
 
 // Отправка даннах картинки на сервер
-const cartPopup = new PopupWithForm({
+const cardPopup = new PopupWithForm({
   popupElement: '#popup-add-image',
-  handleFormSubmit: (cartData) => {
-    cartPopup.loading(true);
-    api.addCard(cartData)
+  handleFormSubmit: (cardData) => {
+    cardPopup.loading(true);
+    api.addCard(cardData)
       .then((formData) => {
-        сartList.prependItem(creadeCart(formData));
-        cartPopup.close();
+        сardList.prependItem(createCard(formData));
+        cardPopup.close();
       })
       .finally(() => {
-        cartPopup.loading(false);
+        cardPopup.loading(false);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -172,24 +170,22 @@ deleteCardPopup.setEventListeners();
 viewImagePopup.setEventListeners();
 profilePopup.setEventListeners();
 avatarPopup.setEventListeners();
-cartPopup.setEventListeners();
+cardPopup.setEventListeners();
 
 /* -------------- Слушатели --------------- */
 
 buttonEditUser.addEventListener('click', () => {
-  formProfileValidation.resetValidation();
-  const {name, about} = userInfo.getUserInfo()
-  userNameSubmit.value = name;
-  userAboutSubmit.value = about;
+  formValidators["form-profile"].resetValidation();
+  profilePopup.setInputValues(userInfo.getUserInfo());
   profilePopup.open();
 });
 
 buttonEditAvatar.addEventListener('click', () => {
-  formAvatarValidation.resetValidation();
+  formValidators["form-avatar"].resetValidation();
   avatarPopup.open();
 });
 
 buttonAdd.addEventListener('click', () => {
-  formImageValidation.resetValidation();
-  cartPopup.open()
+  formValidators['form-image'].resetValidation()
+  cardPopup.open()
 });

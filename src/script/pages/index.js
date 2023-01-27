@@ -1,12 +1,12 @@
 import "./index.css";
-import { validationConfig, userNameSubmit, userAboutSubmit, buttonAdd, buttonEditUser, buttonEditAvatar } from '../utils/constants.js';
+import { validationConfig, buttonAdd, buttonEditUser, buttonEditAvatar } from '../utils/constants.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
-import Card from '../components/Cart.js';
+import Card from '../components/Card.js';
 import Api from '../components/Api.js';
 
 /* -------------- Валидация --------------- */
@@ -39,7 +39,7 @@ const api = new Api({
 let userId
 
 // Загрузка данных пользователя и карточек
-Promise.all([api.getCart(), api.getUserInfo()])
+Promise.all([api.getCard(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
     userInfo.setUserInfo(userData);
     userId = userData._id;

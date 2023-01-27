@@ -80,7 +80,7 @@ export default class Api {
     };
 
     // загрузка карточек с сервера
-    getCart() {
+    getCard() {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
